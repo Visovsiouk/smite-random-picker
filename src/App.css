@@ -1,0 +1,37 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 80px;
+}
+
+.App-header {
+  background: url("./images/SmiteBackground.jpg") no-repeat center center fixed;  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100%;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.God-div {
+	margin: 0 20px;
+	flex: none;
+}
+
+.God-container {
+	display: flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	flex-flow: row wrap;
+}
+

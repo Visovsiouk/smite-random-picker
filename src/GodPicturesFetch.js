@@ -1,10 +1,32 @@
 var React = require('react');
 var GodPantheon = require('./GodPantheon');
+var GodClass = require('./GodClass');
+import { Col, Row } from 'react-bootstrap';
 
 var GodPicture = React.createClass({
+	getInitialState: function() {
+        return {
+            isSelected: true,
+			className: "God-picture-div green"
+        };
+    },
+    handlePictureclick: function() {
+		var isSelected = this.state.isSelected;
+		if (!isSelected) {
+			this.setState({
+				isSelected: true,
+				className: "God-picture-div green"
+			})
+		} else {
+			this.setState({
+				isSelected: false,
+				className: "God-picture-div none"
+			})
+		}
+    },
 	render: function () {
 		return (
-			<div className="God-picture-div">
+			<div onClick={this.handlePictureclick} className={this.state.className}>
 				<img src={this.props.src} alt={this.props.pantheon} />
 				<h6>{this.props.name}</h6>
 			</div>
@@ -40,37 +62,73 @@ var GodPicturesFetch = React.createClass({
 			pantheon: newPantheon
 		});
 	},
+	changeGodclass: function (newGodclass) {
+		this.setState({
+			godclass: newGodclass
+		});
+	},
 	render: function () {
 		var currentPantheon = this.state.pantheon;
+		var currentGodclass = this.state.godclass;
 		var gods = this.state.gods.map(function(god, i){
-			if ( currentPantheon === god.pantheon) {
+			if ( currentPantheon === god.pantheon && currentGodclass === god.godclass) {
 				return (
-				<div>
+				<div className="God-div" key={i}>
 				<GodPicture 
-					key={i} 
 					name={god.name} 
 					src={god.src}
+					isSelected="true"
 				/>
 				</div>
 				);
-			} else if (currentPantheon === 'All') {
+			} else if (currentPantheon === 'All' && currentGodclass === 'All' ) {
 				return (
-				<div>
+				<div className="God-div" key={i} >
 				<GodPicture 
-					key={i} 
 					name={god.name} 
 					src={god.src}
+					isSelected="true"
+				/>
+				</div>
+				);
+			} else if (currentPantheon === god.pantheon && currentGodclass === 'All' ) {
+				return (
+				<div className="God-div" key={i} >
+				<GodPicture 
+					name={god.name} 
+					src={god.src}
+					isSelected="true"
+				/>
+				</div>
+				);
+			} else if (currentPantheon === 'All' && currentGodclass === god.godclass ) {
+				return (
+				<div className="God-div" key={i} >
+				<GodPicture 
+					name={god.name} 
+					src={god.src}
+					isSelected="true"
 				/>
 				</div>
 				);
 			}
 		})
 		return (
-		<div>
-			<GodPantheon 
-				pantheon={this.state.pantheon} 
-				onChange={this.changePantheon} 
-			/>
+		<div className="Options-container">
+			<Row className="Options-row">
+				<Col xs={4}>
+					<GodPantheon 
+						pantheon={this.state.pantheon} 
+						onChange={this.changePantheon}
+					/>
+				</Col>
+				<Col xs={4}>
+					<GodClass 
+						godclass={this.state.godclass} 
+						onChange={this.changeGodclass}
+					/>
+				</Col>
+			</Row>
 			<div className="God-container">{gods}</div>
 		</div>
 		);

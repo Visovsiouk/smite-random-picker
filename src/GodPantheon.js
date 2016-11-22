@@ -8,9 +8,9 @@ var GodPantheon = React.createClass({
 	render: function () {
 		return (
 			<div className="Changes">
-				<h1>
-					Randomize my {this.props.pantheon} gods!
-				</h1>
+				<h3>
+					Pantheon
+				</h3>
 				<select 
 					id="Change-pantheon" 
 					onChange={this.pantheonChange} >

@@ -5,8 +5,14 @@
 
 }
 
+body {
+  background: url("./images/SmiteBackground.jpg") no-repeat center center fixed;  
+  background-size: cover;
+}
+
 .App {
   text-align: center;
+  color: var(--blue-font);
 }
 
 .App-logo {
@@ -14,24 +20,44 @@
 }
 
 .App-header {
-  background: url("./images/SmiteBackground.jpg") no-repeat center center fixed;  
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
   height: 100%;
   padding: 20px;
-  color: white;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.God-picture-div {
-	margin: 0 20px;
+.Options-container {
+  background-color: var(--blue-background);
+}
+
+.Options-row {
+  margin: 0;
+}
+
+.God-div {
+  cursor: pointer;
+}
+
+.God-picture-div.none {
+	padding: 10px 20px;
 	flex: none;
   animation: fadein 2s;
+  background-color: rgba(255,255,255,0.4);
+  border: 1px solid black;
+}
+
+.God-picture-div.green {
+	padding: 10px 20px;
+	flex: none;
+  animation: fadein 2s;
+  background-color: rgba(0,255,0, 0.4);
+  border: 1px solid black;
+}
+
+.God-picture-div img{
+	margin-top: 10px;
 }
 
 .God-container {
@@ -48,6 +74,12 @@
 }
 
 #Change-pantheon {
+  background-color: var(--blue-background);
+  color: var(--blue-font);
+  box-shadow: 0 0 .3em .1em #1A5470;
+}
+
+#Change-godclass {
   background-color: var(--blue-background);
   color: var(--blue-font);
   box-shadow: 0 0 .3em .1em #1A5470;

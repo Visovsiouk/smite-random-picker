@@ -1,5 +1,4 @@
 var React = require('react');
-var GodPicturesFetch = require('./GodPicturesFetch');
 
 var GodPantheon = React.createClass({
 	pantheonChange: function (e) {
@@ -8,12 +7,12 @@ var GodPantheon = React.createClass({
 	},
 	render: function () {
 		return (
-			<div>
+			<div className="Changes">
 				<h1>
-					Hey my pantheon is {this.props.pantheon}!
+					Randomize my {this.props.pantheon} gods!
 				</h1>
 				<select 
-					id="great-pantheons" 
+					id="Change-pantheon" 
 					onChange={this.pantheonChange} >
 					<option value="All">All</option>
 					<option value="Chinese">Chinese</option>				  

@@ -1,13 +1,12 @@
 var React = require('react');
-var ReactDOM = require('react-dom');
 var GodPantheon = require('./GodPantheon');
 
 var GodPicture = React.createClass({
 	render: function () {
 		return (
-			<div classpantheon="God-div">
+			<div className="God-picture-div">
 				<img src={this.props.src} alt={this.props.pantheon} />
-				<h6>{this.props.pantheon}</h6>
+				<h6>{this.props.name}</h6>
 			</div>
 		)
 	}
@@ -42,12 +41,26 @@ var GodPicturesFetch = React.createClass({
 		});
 	},
 	render: function () {
+		var currentPantheon = this.state.pantheon;
 		var gods = this.state.gods.map(function(god, i){
-			if ( "Greek" == god.pantheon) {
+			if ( currentPantheon === god.pantheon) {
 				return (
 				<div>
-				<GodPicture key={i} name={god.name} src={god.src}/>
-				<div className="Test"></div>
+				<GodPicture 
+					key={i} 
+					name={god.name} 
+					src={god.src}
+				/>
+				</div>
+				);
+			} else if (currentPantheon === 'All') {
+				return (
+				<div>
+				<GodPicture 
+					key={i} 
+					name={god.name} 
+					src={god.src}
+				/>
 				</div>
 				);
 			}
@@ -55,8 +68,9 @@ var GodPicturesFetch = React.createClass({
 		return (
 		<div>
 			<GodPantheon 
-					pantheon={this.state.pantheon} 
-					onChange={this.changePantheon} />
+				pantheon={this.state.pantheon} 
+				onChange={this.changePantheon} 
+			/>
 			<div className="God-container">{gods}</div>
 		</div>
 		);

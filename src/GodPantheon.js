@@ -4,7 +4,7 @@ class GodPantheon extends React.Component {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				pantheon: "All"
+				pantheon: 'All'
 			};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}

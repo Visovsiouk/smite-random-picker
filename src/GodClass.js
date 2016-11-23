@@ -4,7 +4,7 @@ class GodClass extends React.Component {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				godclass: "All"
+				godclass: 'All'
 			};
 		this.godclassChange = this.godclassChange.bind(this);
 	}

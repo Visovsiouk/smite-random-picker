@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import logo from './images/logo/smite-logo.png';
-import { Col } from 'react-bootstrap';
 import './App.css';
+import { Col } from 'react-bootstrap';
+
 import GodPicturesFetch  from'./GodPicturesFetch';
 
 class App extends Component {

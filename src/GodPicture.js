@@ -5,29 +5,31 @@ class GodPicture extends React.Component  {
 		super(props);
 			this.state = { 
 				isSelected: true,
-				className: "God-picture-div green" 
+				pictureClassName: "God-picture-div green" 
 			};
 		this.handlePictureclick = this.handlePictureclick.bind(this);
 	}
+	/*STUCK HERE NEED TO CHANGE PROPS ON CLICK*/ 
     handlePictureclick() {
 		var isSelected = this.state.isSelected;
 		if (!isSelected) {
 			this.setState({
 				isSelected: true,
-				className: "God-picture-div green"
+				pictureClassName: "God-picture-div green"
 			})
 		} else {
 			this.setState({
 				isSelected: false,
-				className: "God-picture-div none"
+				pictureClassName: "God-picture-div none"
 			})
 		}
     }
 	render() {
+		var pictureClassName = this.props.pictureClassName;
 		return (
-			<div onClick={this.handlePictureclick} className={this.state.className}>
+			<div onClick={this.handlePictureclick} className={pictureClassName}>
 				<img src={this.props.src} alt={this.props.pantheon} />
-				<h6>{this.props.name}</h6>
+				<h5>{this.props.name}</h5>
 			</div>
 		)
 	}

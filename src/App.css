@@ -8,11 +8,30 @@
 body {
   background: url("./images/SmiteBackground.jpg") no-repeat center center fixed;  
   background-size: cover;
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 }
 
+/*Buttons*/
+
+.btn-primary {
+  color: var(--blue-font);
+  border-radius: 0;
+  border: 1px solid var(--blue-border);
+  background-color: var(--blue-border);
+}
+
+.btn-primary:hover {
+  color: var(--blue-font);
+  border-radius: 0;
+  border: 1px solid var(--blue-border);
+  background-color: var(--blue-background);
+}
+
+/*Main App*/
 .App {
   text-align: center;
   color: var(--blue-font);
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
 }
 
 .App-logo {
@@ -30,10 +49,12 @@ body {
 
 .Options-container {
   background-color: var(--blue-background);
+  padding-bottom: 30px;
 }
 
 .Options-row {
-  margin: 0;
+  margin-right: 0;
+  margin-left: 0;
 }
 
 .God-div {

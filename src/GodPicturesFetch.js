@@ -2,6 +2,7 @@ import React from 'react';
 import GodPantheon  from'./GodPantheon';
 import GodClass  from'./GodClass';
 import GodPicture from './GodPicture';
+import GodButtons from './GodButtons';
 import { Col, Row } from 'react-bootstrap';
 
 class GodPicturesFetch extends React.Component {
@@ -10,6 +11,8 @@ class GodPicturesFetch extends React.Component {
 			this.state = { 
 				pantheon: 'All',  
 				godclass: 'All', 
+				isSelected: true,
+				pictureClassName: "God-picture-div green",
 				gods : [
 					{name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage'},
 					{name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', pantheon: 'Mayan', godclass: 'Hunter'},				
@@ -33,6 +36,7 @@ class GodPicturesFetch extends React.Component {
 			};
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
+		this.changeBoth = this.changeBoth.bind(this);
 	}
 	changePantheon(newPantheon) {
 		this.setState({
@@ -44,17 +48,29 @@ class GodPicturesFetch extends React.Component {
 			godclass: newGodclass
 		});
 	}
+	changeBoth(newPantheon, newGodclass, selectedTrue, changedClass) {
+		this.setState({
+			pantheon: newPantheon,
+			godclass: newGodclass,
+			isSelected: selectedTrue,
+			pictureClassName: changedClass
+		});
+	}
 	render() {
+		var namea = this.state.namea
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
+		var isSelected = this.state.isSelected;
+		var changeClass = this.state.pictureClassName;
 		var gods = this.state.gods.map(function(god, i){
 			if ( currentPantheon === god.pantheon && currentGodclass === god.godclass) {
 				return (
-				<div className="God-div" key={i}>
+				<div className="God-div" key={i} >
 				<GodPicture 
 					name={god.name} 
 					src={god.src}
-					isSelected="true"
+					isSelected={isSelected}
+					pictureClassName={changeClass}
 				/>
 				</div>
 				);
@@ -64,7 +80,8 @@ class GodPicturesFetch extends React.Component {
 				<GodPicture 
 					name={god.name} 
 					src={god.src}
-					isSelected="true"
+					isSelected={isSelected}
+					pictureClassName={changeClass}
 				/>
 				</div>
 				);
@@ -74,7 +91,8 @@ class GodPicturesFetch extends React.Component {
 				<GodPicture 
 					name={god.name} 
 					src={god.src}
-					isSelected="true"
+					isSelected={isSelected}
+					pictureClassName={changeClass}
 				/>
 				</div>
 				);
@@ -84,7 +102,8 @@ class GodPicturesFetch extends React.Component {
 				<GodPicture 
 					name={god.name} 
 					src={god.src}
-					isSelected="true"
+					isSelected={isSelected}
+					pictureClassName={changeClass}
 				/>
 				</div>
 				);
@@ -103,6 +122,13 @@ class GodPicturesFetch extends React.Component {
 					<GodClass 
 						godclass={this.state.godclass} 
 						onChange={this.changeGodclass}
+					/>
+				</Col>
+				<Col xs={4}>
+					<GodButtons	
+						pantheon={this.state.pantheon} 
+						godclass={this.state.godclass}
+						onClick={this.changeBoth}
 					/>
 				</Col>
 			</Row>

@@ -1,73 +1,50 @@
-var React = require('react');
-var GodPantheon = require('./GodPantheon');
-var GodClass = require('./GodClass');
+import React from 'react';
+import GodPantheon  from'./GodPantheon';
+import GodClass  from'./GodClass';
+import GodPicture from './GodPicture';
 import { Col, Row } from 'react-bootstrap';
 
-var GodPicture = React.createClass({
-	getInitialState: function() {
-        return {
-            isSelected: true,
-			className: "God-picture-div green"
-        };
-    },
-    handlePictureclick: function() {
-		var isSelected = this.state.isSelected;
-		if (!isSelected) {
-			this.setState({
-				isSelected: true,
-				className: "God-picture-div green"
-			})
-		} else {
-			this.setState({
-				isSelected: false,
-				className: "God-picture-div none"
-			})
-		}
-    },
-	render: function () {
-		return (
-			<div onClick={this.handlePictureclick} className={this.state.className}>
-				<img src={this.props.src} alt={this.props.pantheon} />
-				<h6>{this.props.name}</h6>
-			</div>
-		)
+class GodPicturesFetch extends React.Component {
+	constructor(props) {
+		super(props);
+			this.state = { 
+				pantheon: 'All',  
+				godclass: 'All', 
+				gods : [
+					{name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage'},
+					{name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', pantheon: 'Mayan', godclass: 'Hunter'},				
+					{name: 'Ah Puch', src: './images/god-icons/AhPuch.png', pantheon: 'Mayan', godclass: 'Mage'},
+					{name: 'Amaterasu', src: './images/god-icons/Amaterasu.png', pantheon: 'Japanese', godclass: 'Warrior'},
+					{name: 'Anhur', src: './images/god-icons/Anhur.png', pantheon: 'Egyptian', godclass: 'Hunter'},
+					{name: 'Anubis', src: './images/god-icons/Anubis.png', pantheon: 'Egyptian', godclass: 'Mage'},
+					{name: 'Ao Kuang', src: './images/god-icons/AoKuang.png', pantheon: 'Chinese', godclass: 'Mage'},
+					{name: 'Aphrodite', src: './images/god-icons/Aphrodite.png', pantheon: 'Greek', godclass: 'Mage'},
+					{name: 'Apollo', src: './images/god-icons/Apollo.png', pantheon: 'Greek', godclass: 'Hunter'},
+					{name: 'Arachne', src: './images/god-icons/Arachne.png', pantheon: 'Greek', godclass: 'Assassin'},
+					{name: 'Ares', src: './images/god-icons/Ares.png', pantheon: 'Greek', godclass: 'Guardian'},
+					{name: 'Artemis', src: './images/god-icons/Artemis.png', pantheon: 'Greek', godclass: 'Hunter'},
+					{name: 'Athena', src: './images/god-icons/Athena.png', pantheon: 'Greek', godclass: 'Guardian'},
+					{name: 'Awilix', src: './images/god-icons/Awilix.png', pantheon: 'Mayan', godclass: 'Assassin'},
+					{name: 'Bacchus', src: './images/god-icons/Bacchus.png', pantheon: 'Roman', godclass: 'Guardian'},
+					{name: 'Bakasura', src: './images/god-icons/Bakasura.png', pantheon: 'Hindu', godclass: 'Assassin'},
+					{name: 'Bastet', src: './images/god-icons/Bastet.png', pantheon: 'Egyptian', godclass: 'Assassin'},
+					{name: 'Bellona', src: './images/god-icons/Bellona.png', pantheon: 'Roman', godclass: 'Warrior'},
+				]
+			};
+		this.changePantheon = this.changePantheon.bind(this);
+		this.changeGodclass = this.changeGodclass.bind(this);
 	}
-});
-
-var GodPicturesFetch = React.createClass({
-	getInitialState: function () {
-		return { pantheon: 'All',  godclass: 'All', gods : [
-				{name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage'},
-				{name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', pantheon: 'Mayan', godclass: 'Hunter'},				
-				{name: 'Ah Puch', src: './images/god-icons/AhPuch.png', pantheon: 'Mayan', godclass: 'Mage'},
-				{name: 'Amaterasu', src: './images/god-icons/Amaterasu.png', pantheon: 'Japanese', godclass: 'Warrior'},
-				{name: 'Anhur', src: './images/god-icons/Anhur.png', pantheon: 'Egyptian', godclass: 'Hunter'},
-				{name: 'Anubis', src: './images/god-icons/Anubis.png', pantheon: 'Egyptian', godclass: 'Mage'},
-				{name: 'Ao Kuang', src: './images/god-icons/AoKuang.png', pantheon: 'Chinese', godclass: 'Mage'},
-				{name: 'Aphrodite', src: './images/god-icons/Aphrodite.png', pantheon: 'Greek', godclass: 'Mage'},
-				{name: 'Apollo', src: './images/god-icons/Apollo.png', pantheon: 'Greek', godclass: 'Hunter'},
-				{name: 'Arachne', src: './images/god-icons/Arachne.png', pantheon: 'Greek', godclass: 'Assassin'},
-				{name: 'Ares', src: './images/god-icons/Ares.png', pantheon: 'Greek', godclass: 'Guardian'},
-				{name: 'Artemis', src: './images/god-icons/Artemis.png', pantheon: 'Greek', godclass: 'Hunter'},
-				{name: 'Athena', src: './images/god-icons/Athena.png', pantheon: 'Greek', godclass: 'Guardian'},
-				{name: 'Awilix', src: './images/god-icons/Awilix.png', pantheon: 'Mayan', godclass: 'Assassin'},
-				{name: 'Bacchus', src: './images/god-icons/Bacchus.png', pantheon: 'Roman', godclass: 'Guardian'},
-				{name: 'Bakasura', src: './images/god-icons/Bakasura.png', pantheon: 'Hindu', godclass: 'Assassin'},
-				{name: 'Bastet', src: './images/god-icons/Bastet.png', pantheon: 'Egyptian', godclass: 'Assassin'},
-				{name: 'Bellona', src: './images/god-icons/Bellona.png', pantheon: 'Roman', godclass: 'Warrior'},
-			] };
-	},
-	changePantheon: function (newPantheon) {
+	changePantheon(newPantheon) {
 		this.setState({
 			pantheon: newPantheon
 		});
-	},
-	changeGodclass: function (newGodclass) {
+	}
+	changeGodclass(newGodclass) {
 		this.setState({
 			godclass: newGodclass
 		});
-	},
-	render: function () {
+	}
+	render() {
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
 		var gods = this.state.gods.map(function(god, i){
@@ -133,6 +110,6 @@ var GodPicturesFetch = React.createClass({
 		</div>
 		);
 	}	
-});
+}
 
-module.exports = GodPicturesFetch;
+export default GodPicturesFetch;

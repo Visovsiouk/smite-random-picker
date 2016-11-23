@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import logo from './images/logo/smite-logo.png';
 import { Col } from 'react-bootstrap';
 import './App.css';
-var GodPicturesFetch = require('./GodPicturesFetch');
-
+import GodPicturesFetch  from'./GodPicturesFetch';
 
 class App extends Component {
   render() {

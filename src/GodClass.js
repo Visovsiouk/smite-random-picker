@@ -1,11 +1,18 @@
-var React = require('react');
+import React from 'react';
 
-var GodClass = React.createClass({
-	godclassChange: function (a) {
+class GodClass extends React.Component {
+	constructor(props) {
+		super(props);
+			this.state = { 
+				godclass: "All"
+			};
+		this.godclassChange = this.godclassChange.bind(this);
+	}
+	godclassChange(a) {
 		var godclass = a.target.value;
 		this.props.onChange(godclass);
-	},
-	render: function () {
+	}
+	render() {
 		return (
 			<div className="Changes">
 				<h3>
@@ -24,6 +31,6 @@ var GodClass = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
-module.exports = GodClass;
+export default GodClass;

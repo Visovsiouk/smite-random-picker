@@ -1,11 +1,18 @@
-var React = require('react');
+import React from 'react';
 
-var GodPantheon = React.createClass({
-	pantheonChange: function (e) {
+class GodPantheon extends React.Component {
+	constructor(props) {
+		super(props);
+			this.state = { 
+				pantheon: "All"
+			};
+		this.pantheonChange = this.pantheonChange.bind(this);
+	}
+	pantheonChange(e) {
 		var pantheon = e.target.value;
 		this.props.onChange(pantheon);
-	},
-	render: function () {
+	}
+	render() {
 		return (
 			<div className="Changes">
 				<h3>
@@ -27,6 +34,6 @@ var GodPantheon = React.createClass({
 			</div>
 		);
 	}
-});
+}
 
-module.exports = GodPantheon;
+export default GodPantheon;

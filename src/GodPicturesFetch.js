@@ -11,7 +11,6 @@ class GodPicturesFetch extends React.Component {
 			this.state = { 
 				pantheon: 'All',  
 				godclass: 'All', 
-				isSelected: true,
 				pictureClassName: "God-picture-div green",
 				gods : [
 					{name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage'},
@@ -37,6 +36,7 @@ class GodPicturesFetch extends React.Component {
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
 		this.changeBoth = this.changeBoth.bind(this);
+		this.handleButtonclick = this.handleButtonclick.bind(this);
 	}
 	changePantheon(newPantheon) {
 		this.setState({
@@ -56,55 +56,83 @@ class GodPicturesFetch extends React.Component {
 			pictureClassName: changedClass
 		});
 	}
+    handleButtonclick() {
+		var isSelected = this.state.isSelected;
+		if (!isSelected) {
+			this.setState({
+				isSelected: true,
+				pictureClassName: "God-picture-div green"
+			})
+		} else {
+			this.setState({
+				isSelected: false,
+				pictureClassName: "God-picture-div none"
+			})
+		}
+    }
+	handlePictureClick (isSelected, src){
+		if (!isSelected) {
+			this.setState({
+				isSelected: true,
+				pictureClassName: "God-picture-div green"
+			})
+		} else {
+			this.setState({
+				isSelected: false,
+				pictureClassName: "God-picture-div none"
+			})
+		}
+	}
 	render() {
-		var namea = this.state.namea
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
 		var isSelected = this.state.isSelected;
 		var changeClass = this.state.pictureClassName;
+		var handlePictureClick = this.handlePictureClick;
 		var gods = this.state.gods.map(function(god, i){
 			if ( currentPantheon === god.pantheon && currentGodclass === god.godclass) {
 				return (
 				<div className="God-div" key={i} >
-				<GodPicture 
-					name={god.name} 
-					src={god.src}
-					isSelected={isSelected}
-					pictureClassName={changeClass}
-				/>
+					<GodPicture 
+						name={god.name} 
+						src={god.src}
+						isSelected={isSelected}
+						pictureClassName={changeClass}
+					/>
 				</div>
 				);
 			} else if (currentPantheon === 'All' && currentGodclass === 'All' ) {
 				return (
 				<div className="God-div" key={i} >
-				<GodPicture 
-					name={god.name} 
-					src={god.src}
-					isSelected={isSelected}
-					pictureClassName={changeClass}
-				/>
+					<GodPicture 
+						name={god.name} 
+						src={god.src}
+						isSelected={isSelected}
+						pictureClassName={changeClass}
+						onClick={handlePictureClick.bind(this, isSelected, name)}
+					/>
 				</div>
 				);
 			} else if (currentPantheon === god.pantheon && currentGodclass === 'All' ) {
 				return (
 				<div className="God-div" key={i} >
-				<GodPicture 
-					name={god.name} 
-					src={god.src}
-					isSelected={isSelected}
-					pictureClassName={changeClass}
-				/>
+					<GodPicture 
+						name={god.name} 
+						src={god.src}
+						isSelected={isSelected}
+						pictureClassName={changeClass}
+					/>
 				</div>
 				);
 			} else if (currentPantheon === 'All' && currentGodclass === god.godclass ) {
 				return (
 				<div className="God-div" key={i} >
-				<GodPicture 
-					name={god.name} 
-					src={god.src}
-					isSelected={isSelected}
-					pictureClassName={changeClass}
-				/>
+					<GodPicture 
+						name={god.name} 
+						src={god.src}
+						isSelected={isSelected}
+						pictureClassName={changeClass}
+					/>
 				</div>
 				);
 			}
@@ -128,7 +156,7 @@ class GodPicturesFetch extends React.Component {
 					<GodButtons	
 						pantheon={this.state.pantheon} 
 						godclass={this.state.godclass}
-						onClick={this.changeBoth}
+						onClick={this.handleButtonclick}
 					/>
 				</Col>
 			</Row>

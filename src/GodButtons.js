@@ -12,7 +12,6 @@ class GodButtons extends React.Component  {
 			};
 		this.handleResetclick = this.handleResetclick.bind(this);
 		this.handleSelectAllclick = this.handleSelectAllclick.bind(this);
-		this.handleSelectNoneclick = this.handleSelectNoneclick.bind(this);
 	}
     handleResetclick(a, b, c, d) {
 		var pantheon = "All"
@@ -25,15 +24,11 @@ class GodButtons extends React.Component  {
 		var isSelected = true
 		this.props.onClick(isSelected);
     }
-	handleSelectNoneclick() {
-		alert ('Select None')
-    }
 	render() {
 		return (
 			<div className="Changes">
 				<Button onClick={this.handleResetclick} bsStyle="primary" bsSize="xsmall" block>Reset</Button>
-				<Button onClick={this.handleSelectAllclick} bsStyle="primary" bsSize="xsmall" block>Select All</Button>
-				<Button onClick={this.handleSelectNoneclick} bsStyle="primary" bsSize="xsmall" block>Select None</Button>
+				<Button onClick={this.handleSelectAllclick} bsStyle="primary" bsSize="xsmall" block>Select All/None</Button>
 			</div>
 		)		
 	}

@@ -11,26 +11,25 @@ class GodPicturesFetch extends React.Component {
 			this.state = { 
 				pantheon: 'All',  
 				godclass: 'All', 
-				pictureClassName: "God-picture-div green",
 				gods : [
-					{name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage'},
-					{name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', pantheon: 'Mayan', godclass: 'Hunter'},				
-					{name: 'Ah Puch', src: './images/god-icons/AhPuch.png', pantheon: 'Mayan', godclass: 'Mage'},
-					{name: 'Amaterasu', src: './images/god-icons/Amaterasu.png', pantheon: 'Japanese', godclass: 'Warrior'},
-					{name: 'Anhur', src: './images/god-icons/Anhur.png', pantheon: 'Egyptian', godclass: 'Hunter'},
-					{name: 'Anubis', src: './images/god-icons/Anubis.png', pantheon: 'Egyptian', godclass: 'Mage'},
-					{name: 'Ao Kuang', src: './images/god-icons/AoKuang.png', pantheon: 'Chinese', godclass: 'Mage'},
-					{name: 'Aphrodite', src: './images/god-icons/Aphrodite.png', pantheon: 'Greek', godclass: 'Mage'},
-					{name: 'Apollo', src: './images/god-icons/Apollo.png', pantheon: 'Greek', godclass: 'Hunter'},
-					{name: 'Arachne', src: './images/god-icons/Arachne.png', pantheon: 'Greek', godclass: 'Assassin'},
-					{name: 'Ares', src: './images/god-icons/Ares.png', pantheon: 'Greek', godclass: 'Guardian'},
-					{name: 'Artemis', src: './images/god-icons/Artemis.png', pantheon: 'Greek', godclass: 'Hunter'},
-					{name: 'Athena', src: './images/god-icons/Athena.png', pantheon: 'Greek', godclass: 'Guardian'},
-					{name: 'Awilix', src: './images/god-icons/Awilix.png', pantheon: 'Mayan', godclass: 'Assassin'},
-					{name: 'Bacchus', src: './images/god-icons/Bacchus.png', pantheon: 'Roman', godclass: 'Guardian'},
-					{name: 'Bakasura', src: './images/god-icons/Bakasura.png', pantheon: 'Hindu', godclass: 'Assassin'},
-					{name: 'Bastet', src: './images/god-icons/Bastet.png', pantheon: 'Egyptian', godclass: 'Assassin'},
-					{name: 'Bellona', src: './images/god-icons/Bellona.png', pantheon: 'Roman', godclass: 'Warrior'},
+					{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 2, name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', pantheon: 'Mayan', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},				
+					{id: 3, name: 'Ah Puch', src: './images/god-icons/AhPuch.png', pantheon: 'Mayan', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 4, name: 'Amaterasu', src: './images/god-icons/Amaterasu.png', pantheon: 'Japanese', godclass: 'Warrior', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 5, name: 'Anhur', src: './images/god-icons/Anhur.png', pantheon: 'Egyptian', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 6, name: 'Anubis', src: './images/god-icons/Anubis.png', pantheon: 'Egyptian', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 7, name: 'Ao Kuang', src: './images/god-icons/AoKuang.png', pantheon: 'Chinese', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 8, name: 'Aphrodite', src: './images/god-icons/Aphrodite.png', pantheon: 'Greek', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 9, name: 'Apollo', src: './images/god-icons/Apollo.png', pantheon: 'Greek', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 10, name: 'Arachne', src: './images/god-icons/Arachne.png', pantheon: 'Greek', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 11, name: 'Ares', src: './images/god-icons/Ares.png', pantheon: 'Greek', godclass: 'Guardian', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 12, name: 'Artemis', src: './images/god-icons/Artemis.png', pantheon: 'Greek', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 13, name: 'Athena', src: './images/god-icons/Athena.png', pantheon: 'Greek', godclass: 'Guardian', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 14, name: 'Awilix', src: './images/god-icons/Awilix.png', pantheon: 'Mayan', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 15, name: 'Bacchus', src: './images/god-icons/Bacchus.png', pantheon: 'Roman', godclass: 'Guardian', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 16, name: 'Bakasura', src: './images/god-icons/Bakasura.png', pantheon: 'Hindu', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 17, name: 'Bastet', src: './images/god-icons/Bastet.png', pantheon: 'Egyptian', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
+					{id: 18, name: 'Bellona', src: './images/god-icons/Bellona.png', pantheon: 'Roman', godclass: 'Warrior', isSelected: true, pictureClassName: "God-picture-div green"},
 				]
 			};
 		this.changePantheon = this.changePantheon.bind(this);
@@ -70,25 +69,24 @@ class GodPicturesFetch extends React.Component {
 			})
 		}
     }
-	handlePictureClick (isSelected, src){
-		if (!isSelected) {
-			this.setState({
-				isSelected: true,
-				pictureClassName: "God-picture-div green"
-			})
-		} else {
-			this.setState({
-				isSelected: false,
-				pictureClassName: "God-picture-div none"
-			})
-		}
+	handlePictureClick (god) {
+		this.setState({gods : this.state.gods.map(function(godpic){
+			if(godpic.id === god.id){
+                if(!godpic.isSelected){
+                	godpic.isSelected = true;
+                   	godpic.pictureClassName = "God-picture-div green";
+                } else {
+					godpic.isSelected = false;
+                   	godpic.pictureClassName = "God-picture-div none";
+                }
+              }
+              return godpic;
+		})})
+		
 	}
 	render() {
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
-		var isSelected = this.state.isSelected;
-		var changeClass = this.state.pictureClassName;
-		var handlePictureClick = this.handlePictureClick;
 		var gods = this.state.gods.map(function(god, i){
 			if ( currentPantheon === god.pantheon && currentGodclass === god.godclass) {
 				return (
@@ -96,8 +94,8 @@ class GodPicturesFetch extends React.Component {
 					<GodPicture 
 						name={god.name} 
 						src={god.src}
-						isSelected={isSelected}
-						pictureClassName={changeClass}
+						pictureClassName={god.pictureClassName}
+						onClick={this.handlePictureClick.bind(this, god)}
 					/>
 				</div>
 				);
@@ -107,9 +105,8 @@ class GodPicturesFetch extends React.Component {
 					<GodPicture 
 						name={god.name} 
 						src={god.src}
-						isSelected={isSelected}
-						pictureClassName={changeClass}
-						onClick={handlePictureClick.bind(this, isSelected, name)}
+						pictureClassName={god.pictureClassName}
+						onClick={this.handlePictureClick.bind(this, god)}
 					/>
 				</div>
 				);
@@ -119,8 +116,8 @@ class GodPicturesFetch extends React.Component {
 					<GodPicture 
 						name={god.name} 
 						src={god.src}
-						isSelected={isSelected}
-						pictureClassName={changeClass}
+						pictureClassName={god.pictureClassName}
+						onClick={this.handlePictureClick.bind(this, god)}
 					/>
 				</div>
 				);
@@ -130,13 +127,13 @@ class GodPicturesFetch extends React.Component {
 					<GodPicture 
 						name={god.name} 
 						src={god.src}
-						isSelected={isSelected}
-						pictureClassName={changeClass}
+						pictureClassName={god.pictureClassName}
+						onClick={this.handlePictureClick.bind(this, god)}
 					/>
 				</div>
 				);
 			}
-		})
+		}.bind(this))
 		return (
 		<div className="Options-container">
 			<Row className="Options-row">

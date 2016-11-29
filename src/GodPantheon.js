@@ -8,8 +8,8 @@ class GodPantheon extends React.Component {
 			};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}
-	pantheonChange(e) {
-		var pantheon = e.target.value;
+	pantheonChange(a) {
+		var pantheon = a.target.value;
 		this.props.onChange(pantheon);
 	}
 	render() {
@@ -20,16 +20,17 @@ class GodPantheon extends React.Component {
 				</h3>
 				<select 
 					id="Change-pantheon" 
-					onChange={this.pantheonChange} >
-					<option value="All">All</option>
-					<option value="Chinese">Chinese</option>				  
-					<option value="Egyptian">Egyptian</option>
-					<option value="Greek">Greek</option>
-					<option value="Hindu">Hindu</option>
-					<option value="Japanese">Japanese</option>
-					<option value="Mayan">Mayan</option>
-					<option value="Norse">Norse</option>				  	
-					<option value="Roman">Roman</option>				  
+					ref="Change-pantheon"
+					onChange={this.pantheonChange}>
+						<option value="All">All</option>
+						<option value="Chinese">Chinese</option>				  
+						<option value="Egyptian">Egyptian</option>
+						<option value="Greek">Greek</option>
+						<option value="Hindu">Hindu</option>
+						<option value="Japanese">Japanese</option>
+						<option value="Mayan">Mayan</option>
+						<option value="Norse">Norse</option>				  	
+						<option value="Roman">Roman</option>				  
 				</select>
 			</div>
 		);

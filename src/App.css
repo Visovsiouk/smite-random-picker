@@ -1,5 +1,6 @@
 :root {
-	--blue-background: rgba(33,105,140,.40);;
+  --blue: #0f2f40;
+	--blue-background: rgba(33,105,140,.40);
 	--blue-font: #c8fafa;
   --blue-border: #21698c;
 
@@ -47,14 +48,31 @@ body {
   font-size: large;
 }
 
+.Footer {
+    position: fixed;
+    left: 0px;
+    bottom: 0px;
+    height: 30px;
+    width: 100%;
+    background: var(--blue);
+    color: var(--blue-font);
+}
+
 .Options-container {
   background-color: var(--blue-background);
-  padding-bottom: 30px;
+  padding: 0 20px 30px 20px;
+}
+
+.Randomizer-container {
+  background-color: var(--blue-background);
+}
+
+.Button-randomize {
+  margin-bottom: 10px;
 }
 
 .Options-row {
-  margin-right: 0;
-  margin-left: 0;
+      margin: 0 0 1em 0;
 }
 
 .God-div {
@@ -91,7 +109,11 @@ body {
 }
 
 .Changes {
-  margin: 20px 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 60px;
 }
 
 #Change-pantheon {

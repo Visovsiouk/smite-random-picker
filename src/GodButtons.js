@@ -11,24 +11,16 @@ class GodButtons extends React.Component  {
 				pictureClassName: "God-picture-div green"
 			};
 		this.handleResetclick = this.handleResetclick.bind(this);
-		this.handleSelectAllclick = this.handleSelectAllclick.bind(this);
 	}
-    handleResetclick(a, b, c, d) {
+    handleResetclick(a, b) {
 		var pantheon = "All"
 		var godclass = "All"
-		var isSelected = true
-		var pictureClassName = "God-picture-div green" 
-		this.props.onClick(pantheon, godclass,isSelected, pictureClassName);
-    }
-	handleSelectAllclick(c) {
-		var isSelected = true
-		this.props.onClick(isSelected);
+		this.props.onClick(pantheon, godclass);
     }
 	render() {
 		return (
 			<div className="Changes">
-				<Button onClick={this.handleResetclick} bsStyle="primary" bsSize="xsmall" block>Reset</Button>
-				<Button onClick={this.handleSelectAllclick} bsStyle="primary" bsSize="xsmall" block>Select All/None</Button>
+				<Button onClick={this.handleResetclick} bsStyle="primary" bsSize="small" block>Reset</Button>
 			</div>
 		)		
 	}

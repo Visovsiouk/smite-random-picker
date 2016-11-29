@@ -3,7 +3,7 @@ import GodPantheon  from'./GodPantheon';
 import GodClass  from'./GodClass';
 import GodPicture from './GodPicture';
 import GodButtons from './GodButtons';
-import { Col, Row } from 'react-bootstrap';
+import { Col, Row, Button } from 'react-bootstrap';
 
 class GodPicturesFetch extends React.Component {
 	constructor(props) {
@@ -30,29 +30,109 @@ class GodPicturesFetch extends React.Component {
 					{id: 16, name: 'Bakasura', src: './images/god-icons/Bakasura.png', pantheon: 'Hindu', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
 					{id: 17, name: 'Bastet', src: './images/god-icons/Bastet.png', pantheon: 'Egyptian', godclass: 'Assassin', isSelected: true, pictureClassName: "God-picture-div green"},
 					{id: 18, name: 'Bellona', src: './images/god-icons/Bellona.png', pantheon: 'Roman', godclass: 'Warrior', isSelected: true, pictureClassName: "God-picture-div green"},
-				]
+				],
+				selectedGods : []
 			};
+		this.runRandomize = this.runRandomize.bind(this);
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
 		this.changeBoth = this.changeBoth.bind(this);
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 	}
+	runRandomize(push) {
+		var pushSelectedGods = [];
+		this.setState({selectedGods : this.state.gods.map(function(godselect){
+			if(godselect.isSelected === true){
+                pushSelectedGods.push(godselect.name); 
+            }
+			return godselect;
+		})})
+		this.props.onClick(pushSelectedGods);
+	}
 	changePantheon(newPantheon) {
+		var godclass = this.state.godclass;
 		this.setState({
-			pantheon: newPantheon
+			pantheon: newPantheon,
+			selectedGods : this.state.gods.map(function(godEverythingChange){
+				if (newPantheon !== 'All' && godclass === 'All'){
+					if (godEverythingChange.pantheon === newPantheon ){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					}
+				} 	else if (newPantheon !== 'All' && godclass !== 'All')	{
+					if (godEverythingChange.pantheon === newPantheon && godEverythingChange.godclass === godclass){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					}
+				} 	else if (newPantheon === 'All' && godclass !== 'All')	{
+					if (godEverythingChange.godclass === godclass ){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					}
+				}	else if (newPantheon === 'All' && godclass === 'All')	{
+					godEverythingChange.isSelected = true;
+					godEverythingChange.pictureClassName = "God-picture-div green"
+				}
+				return godEverythingChange;
+			})
 		});
 	}
 	changeGodclass(newGodclass) {
+		var pantheon = this.state.pantheon;
 		this.setState({
-			godclass: newGodclass
+			godclass: newGodclass,
+			selectedGods : this.state.gods.map(function(godEverythingChange){
+				if (newGodclass !== 'All' && pantheon === 'All'){
+					if (godEverythingChange.godclass === newGodclass ){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					}
+				} 	else if (newGodclass !== 'All' && pantheon !== 'All')	{
+					if (godEverythingChange.godclass === newGodclass && godEverythingChange.pantheon === pantheon){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					} 
+				} else if (newGodclass === 'All' && pantheon !== 'All')	{
+					if (godEverythingChange.pantheon === pantheon ){
+						godEverythingChange.isSelected = true;
+						godEverythingChange.pictureClassName = "God-picture-div green"
+					}	else	{
+						godEverythingChange.isSelected = false;
+						godEverythingChange.pictureClassName = "God-picture-div none"
+					}
+				}	else if (newGodclass === 'All' && pantheon === 'All')	{
+					godEverythingChange.isSelected = true;
+					godEverythingChange.pictureClassName = "God-picture-div green"
+				}
+				return godEverythingChange;
+			})
+			
 		});
 	}
-	changeBoth(newPantheon, newGodclass, selectedTrue, changedClass) {
+	changeBoth(newPantheon, newGodclass) {
 		this.setState({
 			pantheon: newPantheon,
 			godclass: newGodclass,
-			isSelected: selectedTrue,
-			pictureClassName: changedClass
+			selectedGods : this.state.gods.map(function(godEverythingChange){
+				godEverythingChange.isSelected = true;
+				godEverythingChange.pictureClassName = "God-picture-div green"
+			return godEverythingChange;
+			})
 		});
 	}
     handleButtonclick() {
@@ -69,8 +149,9 @@ class GodPicturesFetch extends React.Component {
 			})
 		}
     }
-	handlePictureClick (god) {
-		this.setState({gods : this.state.gods.map(function(godpic){
+	handlePictureClick(god) {
+		this.setState({
+			gods : this.state.gods.map(function(godpic){
 			if(godpic.id === god.id){
                 if(!godpic.isSelected){
                 	godpic.isSelected = true;
@@ -79,10 +160,9 @@ class GodPicturesFetch extends React.Component {
 					godpic.isSelected = false;
                    	godpic.pictureClassName = "God-picture-div none";
                 }
-              }
-              return godpic;
-		})})
-		
+            }
+            return godpic;
+		})})	
 	}
 	render() {
 		var currentPantheon = this.state.pantheon;
@@ -153,10 +233,11 @@ class GodPicturesFetch extends React.Component {
 					<GodButtons	
 						pantheon={this.state.pantheon} 
 						godclass={this.state.godclass}
-						onClick={this.handleButtonclick}
+						onClick={this.changeBoth}
 					/>
 				</Col>
 			</Row>
+			<Button className="Button-randomize" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
 			<div className="God-container">{gods}</div>
 		</div>
 		);

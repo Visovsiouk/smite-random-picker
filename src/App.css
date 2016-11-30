@@ -18,6 +18,9 @@ h1, .h1, h2, .h2, h3, .h3 {
     margin-bottom: 10px;
 }
 
+p {
+  margin: 0;
+}
 /*Buttons*/
 
 .btn-primary {
@@ -59,10 +62,13 @@ h1, .h1, h2, .h2, h3, .h3 {
     position: fixed;
     left: 0px;
     bottom: 0px;
-    height: 30px;
     width: 100%;
     background: var(--blue);
     color: var(--blue-font);
+}
+
+.Footer p {
+  margin: 10px 0;
 }
 
 .Options-container {
@@ -160,5 +166,6 @@ h1, .h1, h2, .h2, h3, .h3 {
 @media screen and (max-width: 990px) {
   .Gods-section {
     height: initial;
+    border-right: none;
   }
 }

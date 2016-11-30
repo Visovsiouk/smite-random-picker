@@ -1,5 +1,16 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Col } from 'react-bootstrap';
+
+function shuffleArray(array) {
+	let i = array.length - 1;
+	for (; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1));
+		const temp = array[i];
+		array[i] = array[j];
+		array[j] = temp;
+	}
+	return array[i];
+}
 
 class GodNamesFetch extends React.Component  {
 	constructor(props) {
@@ -8,12 +19,27 @@ class GodNamesFetch extends React.Component  {
 				gods: []
 			};
 	}
-
 	render() {
-	var gods = this.props.gods; 
+	const resultgod = shuffleArray(this.props.gods);
+	var gods = this.props.gods.map((god, i) => {
+		return (
+			<Col xs={3} key={i}>
+				<div className="Pushed-god">{god}</div>
+			</Col>
+		)
+	}); 
 		return (
 			<div className="Randomizer-container">
-				{gods}
+				<Col xs={12}>
+					<div className="Randomizer-godnames">
+						{gods}
+					</div>
+				</Col>
+				<Col xs={12}>
+					<div>
+						{resultgod}
+					</div>
+				</Col>
 			</div>
 		)		
 	}

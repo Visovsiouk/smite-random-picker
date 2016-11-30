@@ -17,7 +17,6 @@ class App extends Component {
     this.setState({
       selectedGods: push
     })
-    console.log(push);
   }
   render() {
     return (
@@ -26,18 +25,20 @@ class App extends Component {
 			    <img src={logo} className="App-logo" alt="logo" />
 			    <h2>Welcome to SMITE Randomizer</h2>
 			  </div>
-        <Col xs={12} md={7}>
-				  <GodNamesFetch 
-            gods={this.state.selectedGods}
-          />
-        </Col>
-        <Col xs={12} md={5}>
+        <Col className="Gods-section" xs={12} md={5}>
 				  <GodPicturesFetch
             onClick={this.passNamesToRan}
           />
         </Col>
+        <Col className="Randomizer-section" xs={12} md={7}>
+				  <GodNamesFetch 
+            gods={this.state.selectedGods}
+          />
+        </Col>
         <div className="Footer">
-          Game content and materials are trademarks and copyrights of their respective publisher and its licensors. All rights reserved.
+          <p>
+            Game content and materials are trademarks and copyrights of their respective publisher and its licensors. All rights reserved.
+          </p>
         </div>
 		</div>
     );

@@ -1,5 +1,6 @@
 :root {
   --blue: #0f2f40;
+  --light-blue: #3B5564;
 	--blue-background: rgba(33,105,140,.40);
 	--blue-font: #c8fafa;
   --blue-border: #21698c;
@@ -10,6 +11,11 @@ body {
   background: url("./images/SmiteBackground.jpg") no-repeat center center fixed;  
   background-size: cover;
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+}
+
+h1, .h1, h2, .h2, h3, .h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
 }
 
 /*Buttons*/
@@ -33,6 +39,7 @@ body {
   text-align: center;
   color: var(--blue-font);
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
+  padding: 0 2em;
 }
 
 .App-logo {
@@ -59,12 +66,35 @@ body {
 }
 
 .Options-container {
+      padding: 20px 20px 30px;
+}
+
+.Gods-section {
+  height: 100vh;
   background-color: var(--blue-background);
-  padding: 0 20px 30px 20px;
+  border-right: 2px dotted var(--blue-font);
 }
 
 .Randomizer-container {
+    padding: 20px 20px 30px;
+}
+
+.Randomizer-section {
+  height: 100vh;
   background-color: var(--blue-background);
+}
+
+.Randomizer-godnames {
+  display: flex;
+	flex-direction:row;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	flex-flow: row wrap;
+}
+
+.Randomizer-godnames > div {
+  background-color: var(--light-blue);
 }
 
 .Button-randomize {
@@ -77,10 +107,10 @@ body {
 
 .God-div {
   cursor: pointer;
+  min-width: 7em;
 }
 
 .God-picture-div.none {
-	padding: 10px 20px;
 	flex: none;
   animation: fadein 2s;
   background-color: rgba(255,255,255,0.4);
@@ -88,7 +118,6 @@ body {
 }
 
 .God-picture-div.green {
-	padding: 10px 20px;
 	flex: none;
   animation: fadein 2s;
   background-color: rgba(0,255,0, 0.4);
@@ -126,4 +155,10 @@ body {
   background-color: var(--blue-background);
   color: var(--blue-font);
   box-shadow: 0 0 .3em .1em #1A5470;
+}
+
+@media screen and (max-width: 990px) {
+  .Gods-section {
+    height: initial;
+  }
 }

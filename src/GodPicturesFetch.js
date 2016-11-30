@@ -5,6 +5,13 @@ import GodPicture from './GodPicture';
 import GodButtons from './GodButtons';
 import { Col, Row, Button } from 'react-bootstrap';
 
+
+function resetForm() {
+	document.getElementById("Change-pantheon").selectedIndex = 0;
+	document.getElementById("Change-godclass").selectedIndex = 0;
+}
+
+
 class GodPicturesFetch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -41,7 +48,7 @@ class GodPicturesFetch extends React.Component {
 	}
 	runRandomize(push) {
 		var pushSelectedGods = [];
-		this.setState({selectedGods : this.state.gods.map(function(godselect){
+		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){
                 pushSelectedGods.push(godselect.name); 
             }
@@ -53,7 +60,7 @@ class GodPicturesFetch extends React.Component {
 		var godclass = this.state.godclass;
 		this.setState({
 			pantheon: newPantheon,
-			selectedGods : this.state.gods.map(function(godEverythingChange){
+			selectedGods : this.state.gods.map((godEverythingChange) => {
 				if (newPantheon !== 'All' && godclass === 'All'){
 					if (godEverythingChange.pantheon === newPantheon ){
 						godEverythingChange.isSelected = true;
@@ -90,7 +97,7 @@ class GodPicturesFetch extends React.Component {
 		var pantheon = this.state.pantheon;
 		this.setState({
 			godclass: newGodclass,
-			selectedGods : this.state.gods.map(function(godEverythingChange){
+			selectedGods : this.state.gods.map((godEverythingChange) => {
 				if (newGodclass !== 'All' && pantheon === 'All'){
 					if (godEverythingChange.godclass === newGodclass ){
 						godEverythingChange.isSelected = true;
@@ -125,10 +132,11 @@ class GodPicturesFetch extends React.Component {
 		});
 	}
 	changeBoth(newPantheon, newGodclass) {
+		resetForm();
 		this.setState({
 			pantheon: newPantheon,
 			godclass: newGodclass,
-			selectedGods : this.state.gods.map(function(godEverythingChange){
+			selectedGods : this.state.gods.map((godEverythingChange) => {
 				godEverythingChange.isSelected = true;
 				godEverythingChange.pictureClassName = "God-picture-div green"
 			return godEverythingChange;
@@ -151,7 +159,7 @@ class GodPicturesFetch extends React.Component {
     }
 	handlePictureClick(god) {
 		this.setState({
-			gods : this.state.gods.map(function(godpic){
+			gods : this.state.gods.map((godpic) => {
 			if(godpic.id === god.id){
                 if(!godpic.isSelected){
                 	godpic.isSelected = true;
@@ -167,7 +175,7 @@ class GodPicturesFetch extends React.Component {
 	render() {
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
-		var gods = this.state.gods.map(function(god, i){
+		var gods = this.state.gods.map((god, i) => {
 			if ( currentPantheon === god.pantheon && currentGodclass === god.godclass) {
 				return (
 				<div className="God-div" key={i} >
@@ -212,8 +220,8 @@ class GodPicturesFetch extends React.Component {
 					/>
 				</div>
 				);
-			}
-		}.bind(this))
+			}return gods
+		})
 		return (
 		<div className="Options-container">
 			<Row className="Options-row">

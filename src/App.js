@@ -25,16 +25,18 @@ class App extends Component {
 			    <img src={logo} className="App-logo" alt="logo" />
 			    <h2>Welcome to SMITE Randomizer</h2>
 			  </div>
-        <Col className="Gods-section" xs={12} md={5}>
-				  <GodPicturesFetch
-            onClick={this.passNamesToRan}
-          />
-        </Col>
-        <Col className="Randomizer-section" xs={12} md={7}>
-				  <GodNamesFetch 
-            gods={this.state.selectedGods}
-          />
-        </Col>
+        <div className="Mega-container">
+          <Col className="Gods-section" xs={12} md={5}>
+            <GodPicturesFetch
+              onClick={this.passNamesToRan}
+            />
+          </Col>
+          <Col className="Randomizer-section" xs={12} md={7}>
+            <GodNamesFetch 
+              gods={this.state.selectedGods}
+            />
+          </Col>
+        </div>
         <div className="Footer">
           <p>
             Game content and materials are trademarks and copyrights of their respective publisher and its licensors. All rights reserved.

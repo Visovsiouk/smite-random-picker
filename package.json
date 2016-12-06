@@ -19,5 +19,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "homepage": "https://visovsiouk.github.io/smite-roulette/"
+  "homepage": "https://visovsiouk.github.io/smite-random-picker/"
 }

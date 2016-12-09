@@ -1,3 +1,6 @@
+import React from 'react';
+import { Col } from 'react-bootstrap';
+
 /*
     Winwheel.js, by Douglas McKechie @ www.dougtesting.net
     See website for tutorials and other documentation.
@@ -1968,3 +1971,21 @@ function winwheelStopAnimation(canCallback)
         }
     }
 }
+
+class GodNamesFetch extends React.Component  {
+	constructor(props) {
+		super(props);
+			this.state = { 
+				gods: []
+			};
+	}
+	render() {
+		return (
+			<Col xs={3} >
+				<div className="Pushed-god"></div>
+			</Col>
+		)	
+	}
+}
+
+export default GodNamesFetch;

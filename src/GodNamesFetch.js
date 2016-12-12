@@ -1,5 +1,6 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import GodWheel from './GodWheel';
 
 function shuffleArray(array) {
 	let i = array.length - 1;
@@ -38,6 +39,11 @@ class GodNamesFetch extends React.Component  {
 				<Col xs={12}>
 					<div>
 						{resultgod}
+					</div>
+				</Col>
+				<Col xs={12}>
+					<div>
+						<GodWheel gods={this.props.gods} />
 					</div>
 				</Col>
 			</div>

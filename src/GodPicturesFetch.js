@@ -203,7 +203,7 @@ class GodPicturesFetch extends React.Component {
 			godclass: newGodclass,
 			selectedGods : this.state.gods.map((godEverythingChange) => {
 				godEverythingChange.isSelected = true;
-				godEverythingChange.pictureClassName = "God-picture-div green"
+				godEverythingChange.pictureClassName = "God-picture-div green";
 			return godEverythingChange;
 			})
 		});

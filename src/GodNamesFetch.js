@@ -21,26 +21,9 @@ class GodNamesFetch extends React.Component  {
 			};
 	}
 	render() {
-	const resultgod = shuffleArray(this.props.gods);
-	var gods = this.props.gods.map((god, i) => {
-		return (
-			<Col xs={3} key={i}>
-				<div className="Pushed-god">{god}</div>
-			</Col>
-		)
-	}); 
+		shuffleArray(this.props.gods);
 		return (
 			<div className="Randomizer-container">
-				<Col xs={12}>
-					<div className="Randomizer-godnames">
-						{gods}
-					</div>
-				</Col>
-				<Col xs={12}>
-					<div>
-						{resultgod}
-					</div>
-				</Col>
 				<Col xs={12}>
 					<div>
 						<GodWheel gods={this.props.gods} />

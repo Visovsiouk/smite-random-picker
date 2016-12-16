@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import TweenMax from 'gsap';
 import { Col } from 'react-bootstrap';
 
 class GodWheel extends React.Component  {
@@ -7,12 +8,25 @@ class GodWheel extends React.Component  {
 		super(props);
 			this.state = { 
 				gods: [],
-                winningGod: ""
+                winningGod: "",
 		    };
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
 	}
+    /*shouldComponentUpdate(nextProps, nextState) {
+        var gods = this.props.gods.map((god, i) => {
+           return god;
+	    });
+        console.log("Current god " + gods[0]);
+        console.log("Next god " + nextState.winningGod);
+        if (gods[0] === nextState.winningGod) {
+            return false;
+        }
+        return true
+    }*/
     componentDidUpdate() {
-        
+
+        //Setting this to Godwheel Class
+        var initial = this;
         //Getting data passed from other ReactJS components
         var gods = this.props.gods.map((god, i) => {
            return god;
@@ -23,7 +37,8 @@ class GodWheel extends React.Component  {
     
         //Setting the canvas
         let canvas = ReactDOM.findDOMNode(this.refs.canvas),
-        context = canvas.getContext("2d");
+        context = canvas.getContext("2d"),
+        tween;
         canvas.style.width ='100%';
         canvas.width = canvas.offsetWidth;
         canvas.height = canvas.width;
@@ -68,33 +83,13 @@ class GodWheel extends React.Component  {
             };
         }
 
-        function getIndicatedSegment() {
-            var prizeNumber = getIndicatedSegmentNumber();
-            return segarray[prizeNumber].texts;
-        }
-
-        function getIndicatedSegmentNumber() {
-            var indicatedPrize = 0;
-            var relativeAngle = 0;
-            for (var a = 1; a < segments; a ++) {
-                if ((relativeAngle >= segarray[a].startAngle) && (relativeAngle <= segarray[a].endAngle)) {
-                    indicatedPrize = a;
-                    break;
-                }
-            }
-            return indicatedPrize;
-        }
-
-        function init() {
-            drawSegments(segmentDepth);
-            getIndicatedSegment();
-        }
-
         function drawSegments(radius) {
+            context.clearRect(0, 0, canvas.width, canvas.height);
             if (segments > 1) {
                 var colorFill = '#21698c';
                 var second = false;
                 var third = false;
+                var fourth = false;
                 for (var i = 0; i < segments; i++) {
                     context.beginPath();
                     context.moveTo(x, y);
@@ -107,7 +102,7 @@ class GodWheel extends React.Component  {
                         } 
                     } else {
                         context.fillStyle = colorFill;
-                        if (second !== true && third !== true) {
+                        if (second !== true && third !== true && fourth !== true) {
                             colorFill = '#3482a8';
                             second = true;
                         } else if (second === true) {
@@ -115,9 +110,14 @@ class GodWheel extends React.Component  {
                             second = false
                             third = true;
                         } else if (third === true) {
-                            colorFill = '#fff';
+                            colorFill = '#339999';
                             third = false;
+                            fourth = true;
+                        } else if (fourth === true) {
+                            colorFill = '#d6a00c';
+                            fourth = false;
                         }
+                    
                         context.fillStyle = colorFill;
                     }
                     context.fill();
@@ -162,14 +162,60 @@ class GodWheel extends React.Component  {
                         context.translate(-x, -y);
                     }
                 }
-            }   
+            }
         }
 
-        init();    
-        if (this.state.winningGod !== getIndicatedSegment()) {
-            this.setState({winningGod: getIndicatedSegment()});
+        
+
+        /*Animation*/
+        function animation() {
+            TweenMax.ticker.addEventListener("tick", animationLoop);
+            tween = TweenMax.to(canvas, 3, {yoyo:true, onComplete:onComplete});
         }
+
+        function animationLoop() {
+            context.translate(x , y);
+            context.rotate((rotation * 8) * (Math.PI / 180));
+            context.translate(-x ,-y);
+            drawSegments(segmentDepth);
+            console.log("tick");
+        }    
+
+        function onComplete() {
+            getIndicatedSegment();
+            TweenMax.ticker.removeEventListener("tick", animationLoop);
+        }
+        
+        function getIndicatedSegment() {
+            var prizeNumber = getIndicatedSegmentNumber();
+            console.log(initial.state);
+                if (initial.state.winningGod !== segarray[prizeNumber].texts) {
+                    initial.setState({winningGod: segarray[prizeNumber].texts});
+                }
+            return segarray[prizeNumber].texts;
+        }
+
+        function getIndicatedSegmentNumber() {
+            var indicatedPrize = 0;
+            var relativeAngle = 0;
+            for (var a = 1; a < segments; a ++) {
+                if ((relativeAngle >= segarray[a].startAngle) && (relativeAngle <= segarray[a].endAngle)) {
+                    indicatedPrize = a;
+                    break;
+                }
+            }
+            return indicatedPrize;
+        }
+
+        function init() {
+            animation();
+        }
+
+        /*Run the init() function*/
+        init();    
+        
     }
+
     
 	render() {
 		return (

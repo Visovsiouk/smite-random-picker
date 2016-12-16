@@ -18,20 +18,21 @@ class GodWheel extends React.Component  {
 	    });
         console.log("Current god " + gods[0]);
         console.log("Next god " + nextState.winningGod);
-        if (gods[0] === nextState.winningGod) {
-            return false;
+        if (gods[0] !== nextState.winningGod) {
+            return true;
         }
-        return true
+        return false
     }*/
     componentDidUpdate() {
 
+        
         //Setting this to Godwheel Class
         var initial = this;
         //Getting data passed from other ReactJS components
         var gods = this.props.gods.map((god, i) => {
            return god;
 	    });
-
+        console.log(gods);
         //Counting the gods array length
         var segments = gods.length;
     
@@ -170,7 +171,7 @@ class GodWheel extends React.Component  {
         /*Animation*/
         function animation() {
             TweenMax.ticker.addEventListener("tick", animationLoop);
-            tween = TweenMax.to(canvas, 3, {yoyo:true, onComplete:onComplete});
+            tween = TweenMax.to(canvas, 3, {onComplete:onComplete});
         }
 
         function animationLoop() {
@@ -178,7 +179,6 @@ class GodWheel extends React.Component  {
             context.rotate((rotation * 8) * (Math.PI / 180));
             context.translate(-x ,-y);
             drawSegments(segmentDepth);
-            console.log("tick");
         }    
 
         function onComplete() {
@@ -188,22 +188,26 @@ class GodWheel extends React.Component  {
         
         function getIndicatedSegment() {
             var prizeNumber = getIndicatedSegmentNumber();
-            console.log(initial.state);
-                if (initial.state.winningGod !== segarray[prizeNumber].texts) {
+            console.log(segarray[prizeNumber].texts);
+                /*if (initial.state.winningGod !== segarray[prizeNumber].texts) {
                     initial.setState({winningGod: segarray[prizeNumber].texts});
-                }
+                }*/
             return segarray[prizeNumber].texts;
         }
 
-        function getIndicatedSegmentNumber() {
+        function getIndicatedSegmentNumber(turn) {
             var indicatedPrize = 0;
             var relativeAngle = 0;
             for (var a = 1; a < segments; a ++) {
+                console.log(segarray[a].startAngle)
+                console.log(segarray[a].endAngle)
                 if ((relativeAngle >= segarray[a].startAngle) && (relativeAngle <= segarray[a].endAngle)) {
                     indicatedPrize = a;
                     break;
                 }
             }
+            
+            console.log(indicatedPrize);
             return indicatedPrize;
         }
 

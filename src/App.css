@@ -21,8 +21,8 @@ h1, .h1, h2, .h2, h3, .h3 {
 p {
   margin: 0;
 }
-/*Buttons*/
 
+/*Buttons*/
 .btn-primary {
   color: var(--blue-font);
   border-radius: 0;
@@ -36,6 +36,20 @@ p {
   border: 1px solid var(--blue-border);
   background-color: var(--blue-background);
 }
+
+/*Modal*/
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-dialog {
+        position: absolute;
+        top: 45%;
+        left: 50%;
+        transform: translate(-50%, -50%) !important;
+    }
 
 /*Main App*/
 .App {
@@ -81,16 +95,15 @@ p {
   margin-bottom: 40px;
 }
 
-.Randomizer-section {
-  
-}
-
-.Gods-section {
-  
-}
-
 .Randomizer-container {
     padding: 20px 20px 30px;
+}
+
+.Randomizer-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 
 .Randomizer-godnames {

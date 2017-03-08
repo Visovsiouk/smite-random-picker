@@ -112,10 +112,11 @@ class GodPicturesFetch extends React.Component {
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 	}
 	runRandomize(push) {
-		var pushSelectedGods = [];
+		var pushSelectedGods = {names: [], src: []};
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){
-                pushSelectedGods.push(godselect.name); 
+                pushSelectedGods.names.push(godselect.name); 
+				pushSelectedGods.src.push(godselect.src); 
             }
 			return godselect;
 		})})

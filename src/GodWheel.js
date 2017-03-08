@@ -12,17 +12,6 @@ class GodWheel extends React.Component  {
 		    };
         this.componentDidUpdate = this.componentDidUpdate.bind(this);
 	}
-    /*shouldComponentUpdate(nextProps, nextState) {
-        var gods = this.props.gods.map((god, i) => {
-           return god;
-	    });
-        console.log("Current god " + gods[0]);
-        console.log("Next god " + nextState.winningGod);
-        if (gods[0] !== nextState.winningGod) {
-            return true;
-        }
-        return false
-    }*/
     componentDidUpdate() {
 
         

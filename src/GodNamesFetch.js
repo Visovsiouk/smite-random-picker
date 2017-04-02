@@ -23,7 +23,7 @@ class GodNamesFetch extends React.Component  {
 			};
 	}
 	componentDidMount(){
-		shuffleArray(this.props.gods.names, this.props.gods.src);
+		shuffleArray(this.props.gods.names, this.props.gods.porsrc);
 		console.log(this.props.gods);
 	}
 	render() {	
@@ -32,7 +32,7 @@ class GodNamesFetch extends React.Component  {
 				<Col xs={12}>
 					<div className="Randomizer-item">
 						<h1>{this.props.gods.names[0]}</h1>
-						<img src={this.props.gods.src[0]} alt="god" />
+						<img src={this.props.gods.porsrc[0]} alt="god" />
 					</div>
 				</Col>
 			</div>

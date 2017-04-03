@@ -1,7 +1,8 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import ReactAudioPlayer from 'react-audio-player'
 
-function shuffleArray(names, src) {
+function shuffleArray(names, src, selsrc) {
 	let i = names.length - 1;
 	for (; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
@@ -11,8 +12,11 @@ function shuffleArray(names, src) {
 		const tempsrc = src[i];
 		src[i] = src[j];
 		src[j] = tempsrc;
+		const tempselsrc = selsrc[i];
+		selsrc[i] = selsrc[j];
+		selsrc[j] = tempselsrc;
 	}
-	return names[i], src[i];
+	return names[i], src[i], selsrc[i];
 }
 
 class GodNamesFetch extends React.Component  {
@@ -23,8 +27,7 @@ class GodNamesFetch extends React.Component  {
 			};
 	}
 	componentDidMount(){
-		shuffleArray(this.props.gods.names, this.props.gods.porsrc);
-		console.log(this.props.gods);
+		shuffleArray(this.props.gods.names, this.props.gods.porsrc, this.props.gods.selsrc);
 	}
 	render() {	
 		return (
@@ -33,6 +36,10 @@ class GodNamesFetch extends React.Component  {
 					<div className="Randomizer-item">
 						<h1>{this.props.gods.names[0]}</h1>
 						<img src={this.props.gods.porsrc[0]} alt="god" />
+						<ReactAudioPlayer
+							src={this.props.gods.selsrc[0]}
+							autoPlay
+						/>
 					</div>
 				</Col>
 			</div>

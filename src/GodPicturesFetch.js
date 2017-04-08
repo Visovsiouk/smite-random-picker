@@ -18,7 +18,21 @@ class GodPicturesFetch extends React.Component {
 			this.state = { 
 				pantheon: 'All',  
 				godclass: 'All', 
-				gods : [
+				gods : [],
+				selectedGods : []
+			};
+		this.runRandomize = this.runRandomize.bind(this);
+		this.changePantheon = this.changePantheon.bind(this);
+		this.changeGodclass = this.changeGodclass.bind(this);
+		this.changeBoth = this.changeBoth.bind(this);
+		this.handleButtonclick = this.handleButtonclick.bind(this);
+		this.populateFromLocalStorage = this.populateFromLocalStorage.bind(this);
+	}
+	componentDidMount() {
+		if (localStorage.getItem("gods") !== null) {
+			this.populateFromLocalStorage();
+		}	else {
+			var allgods = [
 					{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
 					{id: 2, name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', porsrc: './images/god-portraits/AMC.jpg', selsrc: './sound/select/AMC.ogg', pantheon: 'Mayan', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},				
 					{id: 3, name: 'Ah Puch', src: './images/god-icons/AhPuch.png', porsrc: './images/god-portraits/AhPuch.jpg', selsrc: './sound/select/AhPuch.ogg', pantheon: 'Mayan', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
@@ -104,17 +118,30 @@ class GodPicturesFetch extends React.Component {
 					{id: 83, name: 'Xing Tian', src: './images/god-icons/XingTian.png', porsrc: './images/god-portraits/XingTian.jpg', selsrc: './sound/select/XingTian.ogg', pantheon: 'Chinese', godclass: 'Guardian', isSelected: true, pictureClassName: "God-picture-div green"},				
 					{id: 84, name: 'Ymir', src: './images/god-icons/Ymir.png', porsrc: './images/god-portraits/Ymir.jpg', selsrc: './sound/select/Ymir.ogg', pantheon: 'Norse', godclass: 'Warrior', isSelected: true, pictureClassName: "God-picture-div green"},
 					{id: 85, name: 'Zeus', src: './images/god-icons/Zeus.png', porsrc: './images/god-portraits/Zeus.jpg', selsrc: './sound/select/Zeus.ogg', pantheon: 'Greek', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
-					{id: 86, name: 'Zhong Kui', src: './images/god-icons/ZhongKui.png', porsrc: './images/god-portraits/ZhongKui.jpg', selsrc: './sound/select/ZhongKui.ogg', pantheon: 'Chinese', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
-				],
-				selectedGods : []
-			};
-		this.runRandomize = this.runRandomize.bind(this);
-		this.changePantheon = this.changePantheon.bind(this);
-		this.changeGodclass = this.changeGodclass.bind(this);
-		this.changeBoth = this.changeBoth.bind(this);
-		this.handleButtonclick = this.handleButtonclick.bind(this);
+					{id: 86, name: 'Zhong Kui', src: './images/god-icons/ZhongKui.png', porsrc: './images/god-portraits/ZhongKui.jpg', selsrc: './sound/select/ZhongKui.ogg', pantheon: 'Chinese', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"}
+			]
+			this.setState((prevState) => ({
+				gods: prevState.gods.concat(allgods),
+			}));
+		}
+	}
+	populateFromLocalStorage() {
+		var savedgods = JSON.parse(localStorage.getItem('gods'));
+		Object.keys(localStorage).forEach((key) => {
+			const value = localStorage[key];
+			let valueJson = {};
+			try {
+				valueJson = JSON.parse(value);
+			} catch (err) {
+				return;
+			}
+			this.setState((prevState) => ({
+				gods: prevState.gods.concat(valueJson),
+			}));
+		});
 	}
 	runRandomize(push) {
+		localStorage.setItem('gods', JSON.stringify(this.state.gods));
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){

@@ -1,4 +1,5 @@
 import React from 'react';
+import LazyLoad from 'react-lazyload';
 
 class GodPicture extends React.Component  {
 	constructor(props) {
@@ -9,7 +10,9 @@ class GodPicture extends React.Component  {
 	render() {
 		return (
 			<div onClick={this.props.onClick} className={this.props.pictureClassName}>
-				<img src={this.props.src} alt={this.props.pantheon} />
+				<LazyLoad placeholder={<img src="./images/god-icons/Placeholder.png" />}>
+					<img src={this.props.src} alt={this.props.pantheon} />
+				</LazyLoad>
 				<h5>{this.props.name}</h5>
 			</div>
 		)

@@ -1,5 +1,5 @@
 import React from 'react';
-import LazyLoad from 'react-lazyload';
+import ProgressiveImage from 'react-progressive-image'
 
 class GodPicture extends React.Component  {
 	constructor(props) {
@@ -10,9 +10,9 @@ class GodPicture extends React.Component  {
 	render() {
 		return (
 			<div onClick={this.props.onClick} className={this.props.pictureClassName}>
-				<LazyLoad placeholder={<img src="./images/god-icons/Placeholder.png" />}>
-					<img src={this.props.src} alt={this.props.pantheon} />
-				</LazyLoad>
+				<ProgressiveImage src={this.props.src} placeholder='./images/god-icons/Placeholder.png'>
+					{(image) => <img src={image} alt={this.props.pantheon} />}
+				</ProgressiveImage>
 				<h5>{this.props.name}</h5>
 			</div>
 		)

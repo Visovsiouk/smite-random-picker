@@ -115,7 +115,7 @@ p {
 
 .Randomizer-godnames {
   display: flex;
-	flex-direction:row;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
@@ -148,6 +148,7 @@ p {
   animation: fadein 2s;
   background-color: rgba(255,255,255,0.4);
   border: 1px solid black;
+   min-height: 100px;
 }
 
 .God-picture-div.green {
@@ -155,6 +156,7 @@ p {
   animation: fadein 2s;
   background-color: rgba(0,255,0, 0.4);
   border: 1px solid black;
+  min-height: 100px;
 }
 
 .God-picture-div img{
@@ -163,7 +165,7 @@ p {
 
 .God-container {
 	display: flex;
-	flex-direction:row;
+	flex-direction: row;
 	align-items: center;
 	justify-content: center;
 	width: 100%;

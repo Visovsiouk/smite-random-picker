@@ -39,9 +39,12 @@ class App extends Component {
               />
           </Col>
            <Modal show={this.state.showModal} onHide={this.close}>
+            <div className="loader">
+              <img src="./images/loading.svg"/>
+            </div>
             <GodNamesFetch
               gods={this.state.selectedGods}
-              />
+            />
            </Modal>
         </div>
         <div className="Footer">

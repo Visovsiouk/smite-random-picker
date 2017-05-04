@@ -23,19 +23,26 @@ class GodNamesFetch extends React.Component  {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				gods: {}
+				gods: {},
+				displayModal: 'none'
 			};
+			this.modalDisplay = this.modalDisplay.bind(this);
 	}
-	componentDidMount(){
+	componentDidMount() {
 		shuffleArray(this.props.gods.names, this.props.gods.porsrc, this.props.gods.selsrc);
+	}
+	modalDisplay() {
+		this.setState({
+			displayModal: 'block'
+		})
 	}
 	render() {	
 		return (
-			<div className="Randomizer-container">
+			<div className="Randomizer-container" >
 				<Col xs={12}>
-					<div className="Randomizer-item">
+					<div className="Randomizer-item" style={{display: this.state.displayModal}}>
 						<h1>{this.props.gods.names[0]}</h1>
-						<img src={this.props.gods.porsrc[0]} alt="god" />
+						<img src={this.props.gods.porsrc[0]} alt="god" onLoad={this.modalDisplay} />
 						<ReactAudioPlayer
 							src={this.props.gods.selsrc[0]}
 							autoPlay

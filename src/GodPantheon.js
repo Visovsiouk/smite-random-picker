@@ -4,13 +4,25 @@ class GodPantheon extends React.Component {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				pantheon: 'All'
+				pantheon: []
 			};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}
 	pantheonChange(a) {
 		var pantheon = a.target.value;
 		this.props.onChange(pantheon);
+	}
+	componentWillMount() {
+		if (localStorage.getItem("pantheon") !== 'All') {
+			var localpantheon = JSON.parse(localStorage.getItem('pantheon'));
+			this.setState({
+				pantheon: localpantheon
+			})
+		} else {
+			this.setState({
+				pantheon: 'All'
+			})
+		}
 	}
 	render() {
 		return (
@@ -19,6 +31,7 @@ class GodPantheon extends React.Component {
 					Pantheon
 				</h3>
 				<select 
+					value={this.props.pantheon}
 					id="Change-pantheon" 
 					ref="Change-pantheon"
 					onChange={this.pantheonChange}>

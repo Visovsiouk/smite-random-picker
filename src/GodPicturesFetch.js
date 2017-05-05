@@ -11,7 +11,6 @@ function resetForm() {
 	document.getElementById("Change-godclass").selectedIndex = 0;
 }
 
-
 class GodPicturesFetch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -31,7 +30,7 @@ class GodPicturesFetch extends React.Component {
 	componentDidMount() {
 		if (localStorage.getItem("gods") !== null) {
 			this.populateFromLocalStorage();
-		}	else {
+		} else {
 			var allgods = [
 					{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "God-picture-div green"},
 					{id: 2, name: 'Ah Muzen Cab', src: './images/god-icons/AMC.png', porsrc: './images/god-portraits/AMC.jpg', selsrc: './sound/select/AMC.ogg', pantheon: 'Mayan', godclass: 'Hunter', isSelected: true, pictureClassName: "God-picture-div green"},				
@@ -123,26 +122,25 @@ class GodPicturesFetch extends React.Component {
 			]
 			this.setState((prevState) => ({
 				gods: prevState.gods.concat(allgods),
+				pantheon: 'All',
+				godclass: 'All'
 			}));
 		}
 	}
 	populateFromLocalStorage() {
 		var savedgods = JSON.parse(localStorage.getItem('gods'));
-		Object.keys(localStorage).forEach((key) => {
-			const value = localStorage[key];
-			let valueJson = {};
-			try {
-				valueJson = JSON.parse(value);
-			} catch (err) {
-				return;
-			}
-			this.setState((prevState) => ({
-				gods: prevState.gods.concat(valueJson),
-			}));
-		});
+		var localpantheon = JSON.parse(localStorage.getItem('pantheon'));
+		var localgodclass = JSON.parse(localStorage.getItem('godclass'));
+		this.setState({
+			gods: this.state.gods.concat(savedgods),
+			pantheon: localpantheon,
+			godclass: localgodclass
+		})
 	}
 	runRandomize(push) {
 		localStorage.setItem('gods', JSON.stringify(this.state.gods));
+		localStorage.setItem('pantheon', JSON.stringify(this.state.pantheon));
+		localStorage.setItem('godclass', JSON.stringify(this.state.godclass));
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){

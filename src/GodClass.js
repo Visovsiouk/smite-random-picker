@@ -4,7 +4,7 @@ class GodClass extends React.Component {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				godclass: 'All'
+				godclass: []
 			};
 		this.godclassChange = this.godclassChange.bind(this);
 	}
@@ -12,13 +12,26 @@ class GodClass extends React.Component {
 		var godclass = a.target.value;
 		this.props.onChange(godclass);
 	}
+	componentWillMount() {
+		if (localStorage.getItem("godclass") !== 'All') {
+			var localgodclass = JSON.parse(localStorage.getItem('godclass'));
+			this.setState({
+				godclass: localgodclass
+			})
+		} else {
+			this.setState({
+				godclass: 'All'
+			})
+		}
+	}
 	render() {
 		return (
 			<div className="Changes">
 				<h3>
 					Class
 				</h3>
-				<select 
+				<select
+					value={this.props.godclass} 
 					id="Change-godclass" 
 					onChange={this.godclassChange} >
 					<option value="All">All</option>

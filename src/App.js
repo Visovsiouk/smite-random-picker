@@ -11,15 +11,22 @@ class App extends Component {
     super(props);
     this.state = {
       selectedGods: [],
+      currentSelectedGod: null,
       showModal: false
     };
     this.passNamesToRan = this.passNamesToRan.bind(this);
+    this.currentGod = this.currentGod.bind(this);
     this.close = this.close.bind(this);
   }
   passNamesToRan(push) {
     this.setState({
       selectedGods: push,
       showModal: true
+    })
+  }
+  currentGod(currentGod) {
+    this.setState({
+      currentSelectedGod: currentGod
     })
   }
   close() {
@@ -36,11 +43,13 @@ class App extends Component {
           <Col className="Gods-section" xs={12} md={12}>
             <GodPicturesFetch
               onClick={this.passNamesToRan}
+              currentGod={this.state.currentSelectedGod}
               />
           </Col>
            <Modal show={this.state.showModal} onHide={this.close}>
             <GodNamesFetch
               gods={this.state.selectedGods}
+              onLoad={this.currentGod}
             />
            </Modal>
         </div>

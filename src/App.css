@@ -47,6 +47,15 @@ p {
   background-color: var(--blue-background);
 }
 
+.Control-Button {
+  padding: 10px 0;
+}
+
+.Control-Button .active, .Control-Button .active:hover {
+  background-color: #ffe85b;
+  color: var(--blue)
+}
+
 /*Modal*/
 .modal-content {
   display: flex;

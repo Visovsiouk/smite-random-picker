@@ -2,7 +2,8 @@ import React from 'react';
 import GodPantheon  from'./GodPantheon';
 import GodClass  from'./GodClass';
 import GodPicture from './GodPicture';
-import GodButtons from './GodButtons';
+import GodButtonReset from './GodButtonReset';
+import GodButtonExtermination from './GodButtonExtermination';
 import { Col, Row, Button } from 'react-bootstrap';
 
 
@@ -17,8 +18,9 @@ class GodPicturesFetch extends React.Component {
 			this.state = { 
 				pantheon: 'All',  
 				godclass: 'All', 
-				gods : [],
-				selectedGods : []
+				gods: [],
+				godsToExterminate: [],
+				selectedGods :[]
 			};
 		this.runRandomize = this.runRandomize.bind(this);
 		this.changePantheon = this.changePantheon.bind(this);
@@ -334,7 +336,8 @@ class GodPicturesFetch extends React.Component {
 					/>
 				</Col>
 				<Col xs={4}>
-					<GodButtons	
+					<GodButtonExtermination />
+					<GodButtonReset	
 						pantheon={this.state.pantheon} 
 						godclass={this.state.godclass}
 						onClick={this.changeBoth}

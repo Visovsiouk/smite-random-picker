@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
-class GodButtons extends React.Component  {
+class GodButtonReset extends React.Component  {
 	constructor(props) {
 		super(props);
 			this.state = { 
@@ -19,11 +19,11 @@ class GodButtons extends React.Component  {
     }
 	render() {
 		return (
-			<div className="Changes">
+			<div className="Control-Button">
 				<Button onClick={this.handleResetclick} bsStyle="primary" bsSize="small" block>Reset</Button>
 			</div>
 		)		
 	}
 }
 
-export default GodButtons;
+export default GodButtonReset;

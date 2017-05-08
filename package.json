@@ -13,7 +13,9 @@
     "react-bootstrap": "^0.30.6",
     "react-dom": "^15.4.0",
     "react-preload": "^0.5.1",
-    "react-progressive-image": "^0.1.2"
+    "react-progressive-image": "^0.1.2",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0"
   },
   "scripts": {
     "deploy": "npm run build&&gh-pages -d build",

@@ -31,14 +31,16 @@ class GodNamesFetch extends React.Component  {
 	componentDidMount() {
 		shuffleArray(this.props.gods.names, this.props.gods.porsrc, this.props.gods.selsrc);
 	}
-	modalDisplay() {
+	modalDisplay(currentGod) {
+		var currentGodNow = this.props.gods.names[0]
 		this.setState({
 			displayModal: 'block'
 		})
+		this.props.onLoad(currentGodNow);
 	}
 	render() {	
 		return (
-			<div className="Randomizer-container" >
+			<div className="Randomizer-container">
 				<Col xs={12}>
 					<div className="Randomizer-item" style={{display: this.state.displayModal}}>
 						<h1>{this.props.gods.names[0]}</h1>
@@ -47,6 +49,7 @@ class GodNamesFetch extends React.Component  {
 							src={this.props.gods.selsrc[0]}
 							autoPlay
 						/>
+						<h1>{this.state.currentGods}</h1>
 					</div>
 				</Col>
 			</div>

@@ -9,19 +9,32 @@ class GodButtonExtermination extends React.Component  {
 			};
 		this.handleExterminationclick = this.handleExterminationclick.bind(this);
 	}
+	componentDidMount() {
+		if (localStorage.getItem("extermination") !== null) {
+			this.populateFromLocalStorage();
+		}
+	}
+	populateFromLocalStorage() {
+		var buttonstate = JSON.parse(localStorage.getItem('extermination'));
+		this.setState({
+			active: buttonstate
+		})
+	}
 	handleExterminationclick() {
 		var isButtonActive = this.state.active;
 		if (isButtonActive === false) {
+			localStorage.setItem('extermination', true);
 			this.setState({
 				active: true
 			})
 		} else {
+			localStorage.setItem('extermination', false);
 			this.setState({
 				active: false
 			})
 		}
-
-    }
+		var buttonstate = localStorage.getItem('extermination');
+    }	
 	render() {
 		return (
 			<div className="Control-Button">

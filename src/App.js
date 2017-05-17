@@ -17,10 +17,14 @@ class App extends Component {
     this.close = this.close.bind(this);
   }
   passNamesToRan(push) {
-    this.setState({
-      selectedGods: push,
-      showModal: true
-    })
+      if (push.names.length > 0) {
+        this.setState({
+          selectedGods: push,
+          showModal: true
+        })
+      } else {
+        alert('You have selected no gods');
+      }
   }
   close() {
     this.setState({ showModal: false });

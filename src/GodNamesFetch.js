@@ -40,7 +40,6 @@ class GodNamesFetch extends React.Component  {
 		})
 	}
 	render() {	
-		console.log(this.props)
 		return (
 			<div className="Randomizer-container">
 				<Col xs={12}>
@@ -61,7 +60,9 @@ class GodNamesFetch extends React.Component  {
 
 GodNamesFetch = connect((store) => {
 	return {
-		user: store.selectedGod
+		selectedGod: store.selectedGod
 	};
 })(GodNamesFetch)
+
 export default GodNamesFetch;
+

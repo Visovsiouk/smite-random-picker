@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { Col, Row, Button } from 'react-bootstrap';
 import GodPantheon  from'./GodPantheon';
 import GodClass  from'./GodClass';
 import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
-import { Col, Row, Button } from 'react-bootstrap';
-
 
 function resetForm() {
 	document.getElementById("Change-pantheon").selectedIndex = 0;
@@ -19,8 +19,6 @@ class GodPicturesFetch extends React.Component {
 				pantheon: 'All',  
 				godclass: 'All', 
 				gods: [],
-				godsToExterminate: [],
-				selectedGods :[]
 			};
 		this.runRandomize = this.runRandomize.bind(this);
 		this.changePantheon = this.changePantheon.bind(this);
@@ -28,6 +26,8 @@ class GodPicturesFetch extends React.Component {
 		this.changeBoth = this.changeBoth.bind(this);
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 		this.populateFromLocalStorage = this.populateFromLocalStorage.bind(this);
+		this.exterminateGod = this.exterminateGod.bind(this);
+		this.addToLocalhost = this.addToLocalhost.bind(this); 
 	}
 	componentDidMount() {
 		if (localStorage.getItem("gods") !== null) {
@@ -129,6 +129,16 @@ class GodPicturesFetch extends React.Component {
 			}));
 		}
 	}
+	componentWillReceiveProps(nextProps){
+		var shouldExterminate = JSON.parse(localStorage.getItem('extermination'));
+     	if(nextProps.selectedGod.selectedGod.name !== this.props.selectedGod.selectedGod.name){
+			 if (shouldExterminate === true) {
+				this.exterminateGod(nextProps.selectedGod.selectedGod.name);
+			}
+		 } else {
+			 this.addToLocalhost();
+		 }
+  	}
 	populateFromLocalStorage() {
 		var savedgods = JSON.parse(localStorage.getItem('gods'));
 		var localpantheon = JSON.parse(localStorage.getItem('pantheon'));
@@ -140,9 +150,6 @@ class GodPicturesFetch extends React.Component {
 		})
 	}
 	runRandomize(push) {
-		localStorage.setItem('gods', JSON.stringify(this.state.gods));
-		localStorage.setItem('pantheon', JSON.stringify(this.state.pantheon));
-		localStorage.setItem('godclass', JSON.stringify(this.state.godclass));
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){
@@ -270,6 +277,24 @@ class GodPicturesFetch extends React.Component {
             return godpic;
 		})})	
 	}
+	exterminateGod(godToExterminate) {
+		this.setState({
+			gods : this.state.gods.map((extgod) => {
+			if(extgod.name === godToExterminate){
+                if(extgod.isSelected){
+                	extgod.isSelected = false;
+                   	extgod.pictureClassName = "God-picture-div none";
+                }
+            }
+            return extgod;
+		})})
+		this.addToLocalhost();
+	}
+	addToLocalhost() {
+		localStorage.setItem('gods', JSON.stringify(this.state.gods));
+		localStorage.setItem('pantheon', JSON.stringify(this.state.pantheon));
+		localStorage.setItem('godclass', JSON.stringify(this.state.godclass));
+	}
 	render() {
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
@@ -350,5 +375,11 @@ class GodPicturesFetch extends React.Component {
 		);
 	}	
 }
+
+GodPicturesFetch = connect((store) => {
+	return {
+		selectedGod: store.selectedGod
+	};
+})(GodPicturesFetch)
 
 export default GodPicturesFetch;

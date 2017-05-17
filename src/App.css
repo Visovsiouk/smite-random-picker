@@ -1,7 +1,7 @@
 :root {
   --blue: #0f2f40;
   --light-blue: #3B5564;
-	--blue-background: rgba(33,105,140,.40);
+	--blue-background: rgba(33,105,140,.50);
 	--blue-font: #c8fafa;
   --blue-border: #21698c;
 
@@ -33,26 +33,25 @@ p {
 }
 
 /*Buttons*/
-.btn-primary {
+.btn-primary, .btn-primary:focus {
   color: var(--blue-font);
   border-radius: 0;
   border: 1px solid var(--blue-border);
   background-color: var(--blue-border);
+  background-image: none;
 }
 
 .btn-primary:hover {
-  color: var(--blue-font);
-  border-radius: 0;
-  border: 1px solid var(--blue-border);
-  background-color: var(--blue-background);
+  background-color: #dec52e;
+  color: var(--blue);
 }
 
 .Control-Button {
   padding: 10px 0;
 }
 
-.Control-Button .active, .Control-Button .active:hover {
-  background-color: #ffe85b;
+.Control-Button .btn-primary.active {
+  background-color: #bfa712;
   color: var(--blue)
 }
 

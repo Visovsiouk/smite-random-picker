@@ -28,7 +28,7 @@ class GodPicturesFetch extends React.Component {
 		this.changeBoth = this.changeBoth.bind(this);
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 		this.exterminateGod = this.exterminateGod.bind(this);
-		this.addToLocalhost = this.addToLocalhost.bind(this); 
+		this.addToLocalStorage = this.addToLocalStorage.bind(this); 
 	}
 	componentDidMount() {
 		this.populateFromAppCurrent();
@@ -40,7 +40,7 @@ class GodPicturesFetch extends React.Component {
 				this.exterminateGod(nextProps.selectedGod.selectedGod.name);
 			}
 		 } else {
-			 this.addToLocalhost();
+			 this.addToLocalStorage();
 		 }
   	}
 	populateFromAppCurrent() {
@@ -304,9 +304,9 @@ class GodPicturesFetch extends React.Component {
             }
             return extgod;
 		})})
-		this.addToLocalhost();
+		this.addToLocalStorage();
 	}
-	addToLocalhost() {
+	addToLocalStorage() {
 		localStorage.setItem('gods', JSON.stringify(this.state.gods));
 		localStorage.setItem('pantheon', JSON.stringify(this.state.pantheon));
 		localStorage.setItem('godclass', JSON.stringify(this.state.godclass));

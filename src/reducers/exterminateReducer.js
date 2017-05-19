@@ -3,7 +3,6 @@ export default function reducer(state={
       name: null
     }
   }, action) {
-
     switch (action.type) {
       case "SET_SELECTEDGOD_NAME": {
         return {

@@ -33,7 +33,6 @@ class GodButtonExtermination extends React.Component  {
 				active: false
 			})
 		}
-		var buttonstate = localStorage.getItem('extermination');
     }	
 	render() {
 		return (

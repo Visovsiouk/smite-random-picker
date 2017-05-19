@@ -5,8 +5,7 @@ import { extSelectedGod } from './actions/exterminateAction'
 import ReactAudioPlayer from 'react-audio-player'
 
 function shuffleArray(names, src, selsrc) {
-	let i = names.length - 1;
-	for (; i > 0; i--) {
+	for (var i = names.length - 1; i > 0; i--) {
 		const j = Math.floor(Math.random() * (i + 1));
 		const tempname = names[i];
 		names[i] = names[j];
@@ -18,7 +17,7 @@ function shuffleArray(names, src, selsrc) {
 		selsrc[i] = selsrc[j];
 		selsrc[j] = tempselsrc;
 	}
-	return names[i], src[i], selsrc[i];
+	return [names[i], src[i], selsrc[i]];
 }
 
 class GodNamesFetch extends React.Component  {

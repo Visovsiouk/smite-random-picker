@@ -33,7 +33,7 @@ class GodNamesFetch extends React.Component  {
 		shuffleArray(this.props.gods.names, this.props.gods.porsrc, this.props.gods.selsrc);
 		this.props.dispatch(extSelectedGod(this.props.gods.names[0]));
 	}
-	modalDisplay(currentGod) {
+	modalDisplay() {
 		this.setState({
 			displayModal: 'block'
 		})

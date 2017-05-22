@@ -44,7 +44,7 @@ class App extends Component {
           </Col>
            <Modal show={this.state.showModal} onHide={this.close}>
             <div className="close-modal">
-              <img onClick={this.close} src="./images/close.png" className="App-logo" alt="logo" />
+              <i onClick={this.close} className="material-icons">close</i>
             </div>
             <GodNamesFetch
               gods={this.state.selectedGods}

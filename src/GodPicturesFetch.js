@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Col, Row, Button } from 'react-bootstrap';
 import sortBy from 'lodash/sortBy'; 
-import GodPantheon  from'./GodPantheon';
-import GodClass  from'./GodClass';
+import GodPantheon  from './GodPantheon';
+import GodClass  from './GodClass';
+import GodProfileSave from './GodProfileSave'; 
 import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
@@ -26,6 +27,7 @@ class GodPicturesFetch extends React.Component {
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
 		this.changeBoth = this.changeBoth.bind(this);
+		this.saveProfile = this.saveProfile.bind(this);
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 		this.exterminateGod = this.exterminateGod.bind(this);
 		this.addToLocalStorage = this.addToLocalStorage.bind(this); 
@@ -264,6 +266,9 @@ class GodPicturesFetch extends React.Component {
 			})
 		});
 	}
+	saveProfile(profileName) {
+		alert(profileName);
+	}
     handleButtonclick() {
 		var isSelected = this.state.isSelected;
 		if (!isSelected) {
@@ -365,19 +370,22 @@ class GodPicturesFetch extends React.Component {
 		return (
 		<div className="options-container">
 			<Row className="options-row">
-				<Col xs={4}>
+				<Col className="pantheon-class" xs={12} sm={4}>
 					<GodPantheon 
 						pantheon={this.state.pantheon} 
 						onChange={this.changePantheon}
 					/>
-				</Col>
-				<Col xs={4}>
 					<GodClass 
 						godclass={this.state.godclass} 
 						onChange={this.changeGodclass}
 					/>
 				</Col>
-				<Col xs={4}>
+				<Col xs={12} sm={4}>
+					<GodProfileSave 
+						onClick={this.saveProfile}
+					/>
+				</Col>
+				<Col xs={12} sm={4}>
 					<GodButtonExtermination />
 					<GodButtonReset	
 						pantheon={this.state.pantheon} 

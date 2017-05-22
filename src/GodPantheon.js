@@ -26,7 +26,7 @@ class GodPantheon extends React.Component {
 	}
 	render() {
 		return (
-			<div className="Changes">
+			<div className="changes">
 				<h3>
 					Pantheon
 				</h3>

@@ -163,6 +163,7 @@ p {
 
 .options-row {
   margin: 0 0 1em 0;
+  display: flex;
 }
 
 .god-div {
@@ -206,6 +207,7 @@ p {
   flex-direction: column;
   justify-content: center;
   min-height: 60px;
+  padding: 0 10px;
 }
 
 #change-pantheon {
@@ -218,6 +220,18 @@ p {
   background-color: var(--blue-background);
   color: var(--blue-font);
   box-shadow: 0 0 .3em .1em #1A5470;
+}
+
+.pantheon-class {
+  display: flex;
+  justify-content: center;
+}
+
+.changes input[type="text"] {
+  color: var(--blue-font);
+  background-color: var(--blue-border);
+  width: 100%;
+  margin-bottom: 10px;
 }
 
 @media screen and (max-width: 990px) {

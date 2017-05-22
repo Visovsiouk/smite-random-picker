@@ -26,20 +26,20 @@ class GodClass extends React.Component {
 	}
 	render() {
 		return (
-			<div className="Changes">
+			<div className="changes">
 				<h3>
 					Class
 				</h3>
 				<select
 					value={this.props.godclass} 
-					id="Change-godclass" 
+					id="change-godclass" 
 					onChange={this.godclassChange} >
-					<option value="All">All</option>
-					<option value="Assassin">Assassin</option>				  
-					<option value="Guardian">Guardian</option>
-					<option value="Hunter">Hunter</option>
-					<option value="Mage">Mage</option>
-					<option value="Warrior">Warrior</option>				  
+						<option value="All">All</option>
+						<option value="Assassin">Assassin</option>				  
+						<option value="Guardian">Guardian</option>
+						<option value="Hunter">Hunter</option>
+						<option value="Mage">Mage</option>
+						<option value="Warrior">Warrior</option>				  
 				</select>
 			</div>
 		);

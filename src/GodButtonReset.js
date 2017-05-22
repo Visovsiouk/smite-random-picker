@@ -19,7 +19,7 @@ class GodButtonReset extends React.Component  {
     }
 	render() {
 		return (
-			<div className="Control-Button">
+			<div className="control-button">
 				<Button onClick={this.handleResetclick} bsStyle="primary" bsSize="small" block>Reset</Button>
 			</div>
 		)		

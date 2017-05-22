@@ -32,8 +32,7 @@ class GodPantheon extends React.Component {
 				</h3>
 				<select 
 					value={this.props.pantheon}
-					id="Change-pantheon" 
-					ref="Change-pantheon"
+					id="change-pantheon" 
 					onChange={this.pantheonChange}>
 						<option value="All">All</option>
 						<option value="Chinese">Chinese</option>				  

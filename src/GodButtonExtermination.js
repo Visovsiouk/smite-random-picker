@@ -36,7 +36,7 @@ class GodButtonExtermination extends React.Component  {
     }	
 	render() {
 		return (
-			<div className="Control-Button">
+			<div className="control-button">
 				<Button onClick={this.handleExterminationclick} active={this.state.active} bsStyle="primary" bsSize="small" block>Extermination</Button>
 			</div>
 		)		

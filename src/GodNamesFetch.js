@@ -40,9 +40,9 @@ class GodNamesFetch extends React.Component  {
 	}
 	render() {	
 		return (
-			<div className="Randomizer-container">
+			<div className="randomizer-container">
 				<Col xs={12}>
-					<div className="Randomizer-item" style={{display: this.state.displayModal}}>
+					<div className="randomizer-item" style={{display: this.state.displayModal}}>
 						<h1>{this.props.gods.names[0]}</h1>
 						<img src={this.props.gods.porsrc[0]} alt="god" onLoad={this.modalDisplay} />
 						<ReactAudioPlayer

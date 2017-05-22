@@ -31,24 +31,27 @@ class App extends Component {
   }
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
+      <div className="app">
+        <div className="app-header">
+          <img src={logo} className="app-logo" alt="logo" />
           <h2>Welcome to SMITE Randomizer</h2>
         </div>
-        <div className="Mega-container">
-          <Col className="Gods-section" xs={12} md={12}>
+        <div className="mega-container">
+          <Col className="gods-section" xs={12} md={12}>
             <GodPicturesFetch
               onClick={this.passNamesToRan}
               />
           </Col>
            <Modal show={this.state.showModal} onHide={this.close}>
+            <div className="close-modal">
+              <img onClick={this.close} src="./images/close.png" className="App-logo" alt="logo" />
+            </div>
             <GodNamesFetch
               gods={this.state.selectedGods}
             />
            </Modal>
         </div>
-        <div className="Footer">
+        <div className="footer">
           <p>
             Game content and materials are trademarks and copyrights of their respective publisher and its licensors. All rights reserved.
           </p>

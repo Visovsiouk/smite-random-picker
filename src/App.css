@@ -1,20 +1,19 @@
 :root {
   --blue: #0f2f40;
   --light-blue: #3B5564;
-	--blue-background: rgba(33,105,140,.50);
-	--blue-font: #c8fafa;
+  --blue-background: rgba(33,105,140,.50);
+  --blue-font: #c8fafa;
   --blue-border: #21698c;
-
 }
 
 html {
-    overflow: scroll;
-    overflow-x: hidden;
+  overflow: scroll;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
-    width: 0px;  /* remove scrollbar space */
-    background: transparent;  /* optional: just make scrollbar invisible */
+  width: 0px;  /* remove scrollbar space */
+  background: transparent;  /* optional: just make scrollbar invisible */
 }
 
 body {
@@ -24,8 +23,8 @@ body {
 }
 
 h1, .h1, h2, .h2, h3, .h3 {
-    margin-top: 0;
-    margin-bottom: 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 p {
@@ -46,20 +45,17 @@ p {
   color: var(--blue);
 }
 
-.Control-Button {
+.control-button {
   padding: 10px 0;
 }
 
-.Control-Button .btn-primary.active {
+.control-button .btn-primary.active {
   background-color: #bfa712;
   color: var(--blue)
 }
 
 /*Modal*/
 .modal-content {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   background-color: rgba(33,105,140,.85);
   background-image: url("./images/loading.svg"); 
   background-repeat: no-repeat;
@@ -81,109 +77,112 @@ p {
   width: inherit;
 }
 
+.close-modal {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.close-modal img{
+  height: 32px;
+  cursor: pointer;
+}
+
 .react-audio-player {
   display: none;
 } 
 
 /*Main App*/
-.App {
+.app {
   text-align: center;
   color: var(--blue-font);
   font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", Tahoma, sans-serif;
   padding: 0 2em;
 }
 
-.App-logo {
-  height: 80px;
-}
-
-.App-header {
+.app-header {
   height: 100%;
   padding: 20px;
+}
+
+.app-logo {
+  height: 80px;
 }
 
 .App-intro {
   font-size: large;
 }
 
-.Footer {
-    position: fixed;
-    left: 0px;
-    bottom: 0px;
-    width: 100%;
-    background: var(--blue);
-    color: var(--blue-font);
+.footer {
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  width: 100%;
+  background: var(--blue);
+  color: var(--blue-font);
 }
 
-.Footer p {
+.footer p {
   margin: 10px 0;
 }
 
-.Options-container {
-      padding: 20px 0px 30px;
+.options-container {
+  padding: 20px 0px 30px;
 }
 
-.Mega-container {
+.mega-container {
   overflow: auto;
   background-color: var(--blue-background);
   margin-bottom: 40px;
 }
 
-.Randomizer-container {
-    padding: 20px 20px 30px;
-}
-
-.Randomizer-item {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    position: relative;
-}
-
-.Randomizer-item h1 {
-    text-align: center;
-}
-
-.Randomizer-godnames {
+.randomizer-container {
+  padding: 0 20px 30px;
   display: flex;
-	flex-direction: row;
-	align-items: center;
-	justify-content: center;
-	width: 100%;
-	flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
-.Randomizer-godnames > div {
-  background-color: var(--light-blue);
+.randomizer-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
 }
 
-.Button-randomize {
+.randomizer-item h1 {
+  text-align: center;
+}
+
+.button-randomize {
   margin-bottom: 10px;
 }
 
-.Options-row {
-      margin: 0 0 1em 0;
+.options-row {
+  margin: 0 0 1em 0;
 }
 
-.God-div {
+.god-div {
   cursor: pointer;
   min-width: 7em;
 }
 
-.God-picture-div img {
-    background: url("./images/Transparent.png") no-repeat center center fixed;  
+.god-picture-div img {
+  background: url("./images/Transparent.png") no-repeat center center fixed;
+  margin-top: 10px;  
 }
 
-.God-picture-div.none {
+.god-picture-div.none {
 	flex: none;
   animation: fadein 2s;
   background-color: rgba(255,255,255,0.4);
   border: 1px solid black;
-   min-height: 100px;
+  min-height: 100px;
 }
 
-.God-picture-div.green {
+.god-picture-div.green {
 	flex: none;
   animation: fadein 2s;
   background-color: rgba(0,255,0, 0.4);
@@ -191,11 +190,7 @@ p {
   min-height: 100px;
 }
 
-.God-picture-div img{
-	margin-top: 10px;
-}
-
-.God-container {
+.god-container {
 	display: flex;
 	flex-direction: row;
 	align-items: center;
@@ -204,7 +199,7 @@ p {
 	flex-flow: row wrap;
 }
 
-.Changes {
+.changes {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -212,20 +207,20 @@ p {
   min-height: 60px;
 }
 
-#Change-pantheon {
+#change-pantheon {
   background-color: var(--blue-background);
   color: var(--blue-font);
   box-shadow: 0 0 .3em .1em #1A5470;
 }
 
-#Change-godclass {
+#change-godclass {
   background-color: var(--blue-background);
   color: var(--blue-font);
   box-shadow: 0 0 .3em .1em #1A5470;
 }
 
 @media screen and (max-width: 990px) {
-  .Gods-section {
+  .gods-section {
     height: initial;
     border-right: none;
   }

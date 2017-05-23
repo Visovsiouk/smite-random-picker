@@ -36,10 +36,12 @@ class GodPicturesFetch extends React.Component {
 		this.populateFromAppCurrent();
 	}
 	componentWillReceiveProps(nextProps){
-		var shouldExterminate = JSON.parse(localStorage.getItem('extermination'));
+		var shouldExterminate = JSON.parse(localStorage.getItem('extermination@app'));
      	if(nextProps.selectedGod.selectedGod.name !== this.props.selectedGod.selectedGod.name){
 			 if (shouldExterminate === true) {
 				this.exterminateGod(nextProps.selectedGod.selectedGod.name);
+			} else {
+				this.addToLocalStorage();
 			}
 		 } else {
 			 this.addToLocalStorage();
@@ -47,7 +49,7 @@ class GodPicturesFetch extends React.Component {
   	}
 	populateFromAppCurrent() {
 		var godsifchanged = [];
-		var savedgods = JSON.parse(localStorage.getItem('gods'));
+		var savedgods = JSON.parse(localStorage.getItem('gods@app'));
 		var allgods = [	{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 2, name: 'Anubis', src: './images/god-icons/Anubis.png', porsrc: './images/god-portraits/Anubis.jpg', selsrc: './sound/select/Anubis.ogg', pantheon: 'Egyptian', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 3, name: 'Arachne', src: './images/god-icons/Arachne.png', porsrc: './images/god-portraits/Arachne.jpg', selsrc: './sound/select/Arachne.ogg', pantheon: 'Greek', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green"},
@@ -136,9 +138,9 @@ class GodPicturesFetch extends React.Component {
 						{id: 86, name: 'Cernunnos', src: './images/god-icons/Cernunnos.png', porsrc: './images/god-portraits/Cernunnos.jpg', selsrc: './sound/select/Cernunnos.ogg', pantheon: 'Celtic', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green"},				
 						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"}
 					]
-		if (localStorage.getItem("gods") !== null) {
-			var localpantheon = JSON.parse(localStorage.getItem('pantheon'));
-			var localgodclass = JSON.parse(localStorage.getItem('godclass'));
+		if (localStorage.getItem("gods@app") !== null) {
+			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));
+			var localgodclass = JSON.parse(localStorage.getItem('godclass@app'));
 			if (savedgods.length === allgods.length) {
 				this.setState({
 					gods: this.state.gods.concat(savedgods),
@@ -169,6 +171,9 @@ class GodPicturesFetch extends React.Component {
 	}
 	runRandomize(push) {
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
+		for (var key in localStorage) {
+			console.log(key);
+		}
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){
                 pushSelectedGods.names.push(godselect.name); 
@@ -297,9 +302,9 @@ class GodPicturesFetch extends React.Component {
 		this.addToLocalStorage();
 	}
 	addToLocalStorage() {
-		localStorage.setItem('gods', JSON.stringify(this.state.gods));
-		localStorage.setItem('pantheon', JSON.stringify(this.state.pantheon));
-		localStorage.setItem('godclass', JSON.stringify(this.state.godclass));
+		localStorage.setItem('gods@app', JSON.stringify(this.state.gods));
+		localStorage.setItem('pantheon@app', JSON.stringify(this.state.pantheon));
+		localStorage.setItem('godclass@app', JSON.stringify(this.state.godclass));
 	}
 	handlePictureClick(god) {
 		this.setState({

@@ -13,8 +13,8 @@ class GodPantheon extends React.Component {
 		this.props.onChange(pantheon);
 	}
 	componentWillMount() {
-		if (localStorage.getItem("pantheon") !== 'All') {
-			var localpantheon = JSON.parse(localStorage.getItem('pantheon'));
+		if (localStorage.getItem("pantheon@app") !== 'All') {
+			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));
 			this.setState({
 				pantheon: localpantheon
 			})

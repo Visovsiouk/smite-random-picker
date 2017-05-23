@@ -10,12 +10,12 @@ class GodButtonExtermination extends React.Component  {
 		this.handleExterminationclick = this.handleExterminationclick.bind(this);
 	}
 	componentDidMount() {
-		if (localStorage.getItem("extermination") !== null) {
+		if (localStorage.getItem("extermination@app") !== null) {
 			this.populateFromLocalStorage();
 		}
 	}
 	populateFromLocalStorage() {
-		var buttonstate = JSON.parse(localStorage.getItem('extermination'));
+		var buttonstate = JSON.parse(localStorage.getItem('extermination@app'));
 		this.setState({
 			active: buttonstate
 		})
@@ -23,12 +23,12 @@ class GodButtonExtermination extends React.Component  {
 	handleExterminationclick() {
 		var isButtonActive = this.state.active;
 		if (isButtonActive === false) {
-			localStorage.setItem('extermination', true);
+			localStorage.setItem('extermination@app', true);
 			this.setState({
 				active: true
 			})
 		} else {
-			localStorage.setItem('extermination', false);
+			localStorage.setItem('extermination@app', false);
 			this.setState({
 				active: false
 			})

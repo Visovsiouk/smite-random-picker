@@ -13,8 +13,8 @@ class GodClass extends React.Component {
 		this.props.onChange(godclass);
 	}
 	componentWillMount() {
-		if (localStorage.getItem("godclass") !== 'All') {
-			var localgodclass = JSON.parse(localStorage.getItem('godclass'));
+		if (localStorage.getItem("godclass@app") !== 'All') {
+			var localgodclass = JSON.parse(localStorage.getItem('godclass@app'));
 			this.setState({
 				godclass: localgodclass
 			})

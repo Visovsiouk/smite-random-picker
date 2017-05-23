@@ -4,7 +4,7 @@ import { Col, Row, Button } from 'react-bootstrap';
 import sortBy from 'lodash/sortBy'; 
 import GodPantheon  from './GodPantheon';
 import GodClass  from './GodClass';
-import GodProfileSave from './GodProfileSave'; 
+import GodProfile from './GodProfile'; 
 import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
@@ -21,8 +21,9 @@ class GodPicturesFetch extends React.Component {
 				pantheon: 'All',  
 				godclass: 'All', 
 				gods: [],
+				profiles: []
 			};
-		this.populateFromAppCurrent= this.populateFromAppCurrent.bind(this);
+		this.populateFromAppCurrent = this.populateFromAppCurrent.bind(this);
 		this.runRandomize = this.runRandomize.bind(this);
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
@@ -171,9 +172,6 @@ class GodPicturesFetch extends React.Component {
 	}
 	runRandomize(push) {
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
-		for (var key in localStorage) {
-			console.log(key);
-		}
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
 			if(godselect.isSelected === true){
                 pushSelectedGods.names.push(godselect.name); 
@@ -272,7 +270,7 @@ class GodPicturesFetch extends React.Component {
 		});
 	}
 	saveProfile(profileName) {
-		alert(profileName);
+		localStorage.setItem(profileName, JSON.stringify(this.state.gods));
 	}
     handleButtonclick() {
 		var isSelected = this.state.isSelected;
@@ -385,8 +383,8 @@ class GodPicturesFetch extends React.Component {
 						onChange={this.changeGodclass}
 					/>
 				</Col>
-				<Col xs={12} sm={4}>
-					<GodProfileSave 
+				<Col className="profile-class" xs={12} sm={4}>
+					<GodProfile
 						onClick={this.saveProfile}
 					/>
 				</Col>

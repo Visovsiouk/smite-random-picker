@@ -64,7 +64,10 @@ class GodProfile extends React.Component {
 					this.props.onClick(currentProfileName, selection);
 					this.profilesHaveChanged(currentProfileName);
 				} else {
-					alert('This profile name already exists');
+					if (confirm('This profile name already exists. Overwrite?')) {
+						this.props.onClick(currentProfileName, selection);
+						this.profilesHaveChanged(currentProfileName);
+					} 
 				}
 			}
 		} else if (selection === 'load') {

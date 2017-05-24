@@ -38,15 +38,11 @@ class GodPicturesFetch extends React.Component {
 	}
 	componentWillReceiveProps(nextProps){
 		var shouldExterminate = JSON.parse(localStorage.getItem('extermination@app'));
-     	if(nextProps.selectedGod.selectedGod.name !== this.props.selectedGod.selectedGod.name){
-			 if (shouldExterminate === true) {
-				this.exterminateGod(nextProps.selectedGod.selectedGod.name);
-			} else {
-				this.addToLocalStorage();
-			}
-		 } else {
-			 this.addToLocalStorage();
-		 }
+		if (shouldExterminate === true) {
+			this.exterminateGod(nextProps.selectedGod.selectedGod.name);
+		} else {
+			this.addToLocalStorage();
+		}
   	}
 	populateFromAppCurrent() {
 		var godsifchanged = [];
@@ -273,10 +269,11 @@ class GodPicturesFetch extends React.Component {
 		if (selection === 'save') {
 			localStorage.setItem(profileName, JSON.stringify(this.state.gods));
 		} else if (selection === 'load') {
-			console.log(profileName);
 			var currentProfilePantheon = JSON.parse(localStorage.getItem(profileName));
 			this.setState({
-				gods: currentProfilePantheon
+				gods: currentProfilePantheon,
+				pantheon: 'All',
+				godclass: 'All'
 			})
 		}
 	}
@@ -379,7 +376,7 @@ class GodPicturesFetch extends React.Component {
 			} return gods
 		})
 		return (
-		<div className="options-container">
+		<div className="options-container container">
 			<Row className="options-row">
 				<Col className="pantheon-class" xs={12} sm={4}>
 					<GodPantheon 

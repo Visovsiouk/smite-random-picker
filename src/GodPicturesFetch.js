@@ -28,7 +28,7 @@ class GodPicturesFetch extends React.Component {
 		this.changePantheon = this.changePantheon.bind(this);
 		this.changeGodclass = this.changeGodclass.bind(this);
 		this.changeBoth = this.changeBoth.bind(this);
-		this.saveProfile = this.saveProfile.bind(this);
+		this.handleProfileClick = this.handleProfileClick.bind(this);
 		this.handleButtonclick = this.handleButtonclick.bind(this);
 		this.exterminateGod = this.exterminateGod.bind(this);
 		this.addToLocalStorage = this.addToLocalStorage.bind(this); 
@@ -269,8 +269,16 @@ class GodPicturesFetch extends React.Component {
 			})
 		});
 	}
-	saveProfile(profileName) {
-		localStorage.setItem(profileName, JSON.stringify(this.state.gods));
+	handleProfileClick(profileName, selection) {
+		if (selection === 'save') {
+			localStorage.setItem(profileName, JSON.stringify(this.state.gods));
+		} else if (selection === 'load') {
+			console.log(profileName);
+			var currentProfilePantheon = JSON.parse(localStorage.getItem(profileName));
+			this.setState({
+				gods: currentProfilePantheon
+			})
+		}
 	}
     handleButtonclick() {
 		var isSelected = this.state.isSelected;
@@ -385,7 +393,7 @@ class GodPicturesFetch extends React.Component {
 				</Col>
 				<Col className="profile-class" xs={12} sm={4}>
 					<GodProfile
-						onClick={this.saveProfile}
+						onClick={this.handleProfileClick}
 					/>
 				</Col>
 				<Col xs={12} sm={4}>

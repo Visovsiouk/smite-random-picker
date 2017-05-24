@@ -133,7 +133,7 @@ class GodPicturesFetch extends React.Component {
 						{id: 84, name: 'The Morrigan', src: './images/god-icons/TheMorrigan.png', porsrc: './images/god-portraits/TheMorrigan.jpg', selsrc: './sound/select/TheMorrigan.ogg', pantheon: 'Celtic', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},					
 						{id: 85, name: 'Kuzenbo', src: './images/god-icons/Kuzenbo.png', porsrc: './images/god-portraits/Kuzenbo.jpg', selsrc: './sound/select/Kuzenbo.ogg', pantheon: 'Japanese', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},					
 						{id: 86, name: 'Cernunnos', src: './images/god-icons/Cernunnos.png', porsrc: './images/god-portraits/Cernunnos.jpg', selsrc: './sound/select/Cernunnos.ogg', pantheon: 'Celtic', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green"},				
-						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"}
+						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},	
 					]
 		if (localStorage.getItem("gods@app") !== null) {
 			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));
@@ -145,11 +145,15 @@ class GodPicturesFetch extends React.Component {
 					godclass: localgodclass
 				})
 			} else {
-				for (var i = 0; i < allgods.length; i++){
-					if (savedgods[i].isSelected === false){
-						godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+				for (var i = 0; i < allgods.length; i++) {
+					if (savedgods[i] !== undefined) {
+						if (savedgods[i].isSelected === false){
+							godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+						} else {
+							godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
+						}
 					} else {
-						godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
+						godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
 					}
 				}
 				this.setState((prevState) => ({
@@ -270,11 +274,33 @@ class GodPicturesFetch extends React.Component {
 			localStorage.setItem(profileName, JSON.stringify(this.state.gods));
 		} else if (selection === 'load') {
 			var currentProfilePantheon = JSON.parse(localStorage.getItem(profileName));
-			this.setState({
-				gods: currentProfilePantheon,
-				pantheon: 'All',
-				godclass: 'All'
-			})
+			var currentGods = this.state.gods;
+			var godsProfileChanged = [];
+			if (currentProfilePantheon.length !== currentGods.length) {
+				for (var i = 0; i < currentGods.length; i++) {
+					if (currentProfilePantheon[i] !== undefined) {
+						if (currentProfilePantheon[i].isSelected === false){
+							godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+						} else {
+							godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
+						}
+					} else {
+						godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+					}	
+				}
+				this.setState({
+					gods: godsProfileChanged,
+					pantheon: 'All',
+					godclass: 'All'
+				})
+			} else {
+				this.setState({
+					gods: currentProfilePantheon,
+					pantheon: 'All',
+					godclass: 'All'
+				})
+			}
+			
 		}
 	}
     handleButtonclick() {

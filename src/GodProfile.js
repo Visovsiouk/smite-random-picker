@@ -37,6 +37,7 @@ class GodProfile extends React.Component {
 			})
 		} else {
 			this.setState({
+				existingProfiles: [],
 				currentSelectedProfile: ''
 			})
 		}
@@ -56,9 +57,8 @@ class GodProfile extends React.Component {
 						shouldAllowSave = false;
 					}
 			}
-			var noneResult = new RegExp("\\bnone\\b", 'i').test(currentProfileName);
-			if (currentProfileName === '' || /\W/.test(currentProfileName) || currentProfileName.length > 11 || noneResult === true) {
-				alert('Give a proper name to your new profile.\nOnly alphanumeric and "-" characters are allowed.');
+			if (currentProfileName === '' || /\W/.test(currentProfileName) || currentProfileName.length > 11) {
+				alert('Give a proper name to your new profile.\nOnly alphanumeric and "-" characters are allowed.\nThe name should be less than 12 characters long.');
 			} else {
 				if (shouldAllowSave === true) {
 					this.props.onClick(currentProfileName, selection);

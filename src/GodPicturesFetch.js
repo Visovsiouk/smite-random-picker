@@ -47,7 +47,8 @@ class GodPicturesFetch extends React.Component {
 	populateFromAppCurrent() {
 		var godsifchanged = [];
 		var savedgods = JSON.parse(localStorage.getItem('gods@app'));
-		var allgods = [	{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
+		var allgods = [	
+						{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 2, name: 'Anubis', src: './images/god-icons/Anubis.png', porsrc: './images/god-portraits/Anubis.jpg', selsrc: './sound/select/Anubis.ogg', pantheon: 'Egyptian', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 3, name: 'Arachne', src: './images/god-icons/Arachne.png', porsrc: './images/god-portraits/Arachne.jpg', selsrc: './sound/select/Arachne.ogg', pantheon: 'Greek', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 4, name: 'Artemis', src: './images/god-icons/Artemis.png', porsrc: './images/god-portraits/Artemis.jpg', selsrc: './sound/select/Artemis.ogg', pantheon: 'Greek', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green"},
@@ -134,7 +135,8 @@ class GodPicturesFetch extends React.Component {
 						{id: 85, name: 'Kuzenbo', src: './images/god-icons/Kuzenbo.png', porsrc: './images/god-portraits/Kuzenbo.jpg', selsrc: './sound/select/Kuzenbo.ogg', pantheon: 'Japanese', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},					
 						{id: 86, name: 'Cernunnos', src: './images/god-icons/Cernunnos.png', porsrc: './images/god-portraits/Cernunnos.jpg', selsrc: './sound/select/Cernunnos.ogg', pantheon: 'Celtic', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green"},				
 						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},	
-					]
+   						{id: 88, name: 'Da Ji', src: './images/god-icons/DaJi.png', porsrc: './images/god-portraits/DaJi.jpg', selsrc: './sound/select/DaJi.ogg', pantheon: 'Chinese', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green"},	
+					  ]
 		if (localStorage.getItem("gods@app") !== null) {
 			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));
 			var localgodclass = JSON.parse(localStorage.getItem('godclass@app'));
@@ -300,7 +302,6 @@ class GodPicturesFetch extends React.Component {
 					godclass: 'All'
 				})
 			}
-			
 		}
 	}
     handleButtonclick() {

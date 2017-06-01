@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Modal, Alert } from 'react-bootstrap';
 
 function resetProfileForm() {
 	document.getElementById("change-profile").selectedIndex = 0;
@@ -11,13 +11,18 @@ class GodProfile extends React.Component {
 			this.state = { 
 				profileName: '',
 				existingProfiles: [],
-				currentSelectedProfile: ''
+				currentSelectedProfile: '',
+				sameNameVisible: false,
+				wrongNameVisible: false
 			};
 		this.profilesHaveChanged = this.profilesHaveChanged.bind(this);
 		this.profileChange = this.profileChange.bind(this);
 		this.profileHandleClick = this.profileHandleClick.bind(this);
 		this.profileDeleteClick = this.profileDeleteClick.bind(this);
 		this.handleTextChange = this.handleTextChange.bind(this);
+		this.closeSameNameVisible = this.closeSameNameVisible.bind(this);
+		this.saveSameNameVisible = this.saveSameNameVisible.bind(this);
+		this.closeWrongNameVisible = this.closeWrongNameVisible.bind(this);
 	}
 	componentDidMount() {
 		this.profilesHaveChanged();
@@ -58,16 +63,17 @@ class GodProfile extends React.Component {
 					}
 			}
 			if (currentProfileName === '' || /\W/.test(currentProfileName) || currentProfileName.length > 11) {
-				alert('Give a proper name to your new profile.\nOnly alphanumeric and "-" characters are allowed.\nThe name should be less than 12 characters long.');
+				this.setState({ 
+					wrongNameVisible: true
+				});
 			} else {
 				if (shouldAllowSave === true) {
 					this.props.onClick(currentProfileName, selection);
 					this.profilesHaveChanged(currentProfileName);
 				} else {
-					if (confirm('This profile name already exists. Overwrite?')) {
-						this.props.onClick(currentProfileName, selection);
-						this.profilesHaveChanged(currentProfileName);
-					} 
+					this.setState ({
+						sameNameVisible: true
+					})
 				}
 			}
 		} else if (selection === 'load') {
@@ -83,7 +89,25 @@ class GodProfile extends React.Component {
     	this.setState ({
 			profileName: event.target.value
 		})
-  	}	
+  	}
+	closeSameNameVisible() {
+		this.setState({ 
+			sameNameVisible: false 
+		});
+	}
+	saveSameNameVisible() {
+		var currentProfileName = this.state.profileName;
+		this.setState({ 
+			sameNameVisible: false 
+		});
+		this.props.onClick(currentProfileName, 'save');
+		this.profilesHaveChanged(currentProfileName);
+	}
+	closeWrongNameVisible() {
+		this.setState({ 
+			wrongNameVisible: false
+		});
+	}		
 	render() {
 		return (
 			<div className="changes">
@@ -105,6 +129,26 @@ class GodProfile extends React.Component {
 					<Button onClick={() => this.profileHandleClick('load')} bsStyle="primary" bsSize="small" block>Load</Button>
 					<Button onClick={this.profileDeleteClick} bsStyle="primary" bsSize="small" block>Delete</Button>
 				</div>
+				<Modal className="same-name-modal" show={this.state.sameNameVisible} onHide={this.closeSameNameVisible}>
+					<div className="close-modal">
+						<i onClick={this.closeSameNameVisible} className="material-icons">close</i>
+					</div>
+					<div>
+						<h4 className="modal-message">This profile name already exists. Overwrite?</h4>
+						<p className="modal-button-container">
+							<Button onClick={this.saveSameNameVisible} bsStyle="success">Save</Button>
+							<Button onClick={this.closeSameNameVisible}>Cancel</Button>
+						</p>
+					</div>
+				</Modal>
+				<Modal className="same-name-modal" show={this.state.wrongNameVisible} onHide={this.closeWrongNameVisible}>
+					<div className="close-modal">
+						<i onClick={this.closeWrongNameVisible} className="material-icons">close</i>
+					</div>
+					<div>
+						<h4 className="modal-message">Give a proper name to your new profile.<br/>Only alphanumeric and "-" characters are allowed.<br/>The name should be less than 12 characters long.</h4>
+					</div>
+				</Modal>
 			</div>
 		);
 	}

@@ -42,7 +42,7 @@ class App extends Component {
               onClick={this.passNamesToRan}
               />
           </Col>
-           <Modal show={this.state.showModal} onHide={this.close}>
+           <Modal className="god-modal" show={this.state.showModal} onHide={this.close}>
             <div className="close-modal">
               <i onClick={this.close} className="material-icons">close</i>
             </div>

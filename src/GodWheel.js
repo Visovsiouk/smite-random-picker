@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import TweenMax from 'gsap';
 import { Col } from 'react-bootstrap';
 
+/*Unused and unfinished component for a "Wheel of fortune" type of randomization*/
 class GodWheel extends React.Component  {
 	constructor(props) {
 		super(props);

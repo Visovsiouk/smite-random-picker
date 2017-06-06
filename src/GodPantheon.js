@@ -1,5 +1,6 @@
 import React from 'react';
 
+/*"Pantheon" option component*/
 class GodPantheon extends React.Component {
 	constructor(props) {
 		super(props);
@@ -8,10 +9,12 @@ class GodPantheon extends React.Component {
 			};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}
+	/*Event that passes the selected pantheon to GodsPicturesFetch*/
 	pantheonChange(a) {
 		var pantheon = a.target.value;
 		this.props.onChange(pantheon);
 	}
+	/*Checking localstorage if the pantheon@app key is set and setting the state accordingly*/
 	componentWillMount() {
 		if (localStorage.getItem("pantheon@app") !== 'All') {
 			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));

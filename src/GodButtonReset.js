@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
+/*"Restet" button component*/
 class GodButtonReset extends React.Component  {
 	constructor(props) {
 		super(props);
@@ -12,6 +13,7 @@ class GodButtonReset extends React.Component  {
 			};
 		this.handleResetclick = this.handleResetclick.bind(this);
 	}
+	/*Reseting pantheon and godclass to "All"*/
     handleResetclick(a, b) {
 		var pantheon = "All"
 		var godclass = "All"

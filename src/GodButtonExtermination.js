@@ -1,43 +1,47 @@
 import React from 'react';
 import { Button } from 'react-bootstrap';
 
+/*"Extermination"" button component*/
 class GodButtonExtermination extends React.Component  {
 	constructor(props) {
 		super(props);
 			this.state = { 
-				active: false
+				exterminationActive: false
 			};
 		this.handleExterminationclick = this.handleExterminationclick.bind(this);
 	}
 	componentDidMount() {
+		/*Checking localstorage if the extermination@app key is set*/
 		if (localStorage.getItem("extermination@app") !== null) {
 			this.populateFromLocalStorage();
 		}
 	}
+	/*Method for setting the state for exetermination if the localstorage key exists*/
 	populateFromLocalStorage() {
 		var buttonstate = JSON.parse(localStorage.getItem('extermination@app'));
 		this.setState({
-			active: buttonstate
+			exterminationActive: buttonstate
 		})
 	}
+	/*Method for handling the "Extermination" button click*/
 	handleExterminationclick() {
-		var isButtonActive = this.state.active;
+		var isButtonActive = this.state.exterminationActive;
 		if (isButtonActive === false) {
 			localStorage.setItem('extermination@app', true);
 			this.setState({
-				active: true
+				exterminationActive: true
 			})
 		} else {
 			localStorage.setItem('extermination@app', false);
 			this.setState({
-				active: false
+				exterminationActive: false
 			})
 		}
     }	
 	render() {
 		return (
 			<div className="control-button">
-				<Button onClick={this.handleExterminationclick} active={this.state.active} bsStyle="primary" bsSize="small" block>Extermination</Button>
+				<Button onClick={this.handleExterminationclick} active={this.state.exterminationActive} bsStyle="primary" bsSize="small" block>Extermination</Button>
 			</div>
 		)		
 	}

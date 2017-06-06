@@ -14,6 +14,7 @@ function resetForm() {
 	document.getElementById("change-godclass").selectedIndex = 0;
 }
 
+/*Component for handling most of the inner workings and rendering of the app*/
 class GodPicturesFetch extends React.Component {
 	constructor(props) {
 		super(props);
@@ -29,14 +30,15 @@ class GodPicturesFetch extends React.Component {
 		this.changeGodclass = this.changeGodclass.bind(this);
 		this.changeBoth = this.changeBoth.bind(this);
 		this.handleProfileClick = this.handleProfileClick.bind(this);
-		this.handleButtonclick = this.handleButtonclick.bind(this);
 		this.exterminateGod = this.exterminateGod.bind(this);
 		this.addToLocalStorage = this.addToLocalStorage.bind(this); 
 	}
 	componentDidMount() {
+		/*Run the populateFromAppCurrent method on start*/
 		this.populateFromAppCurrent();
 	}
 	componentWillReceiveProps(nextProps){
+		/*Check if "Extermination" is active. If it isn't save god selections to localstorage. If it is, run the exterminateGod method*/
 		var shouldExterminate = JSON.parse(localStorage.getItem('extermination@app'));
 		if (shouldExterminate === true) {
 			this.exterminateGod(nextProps.selectedGod.selectedGod.name);
@@ -44,9 +46,12 @@ class GodPicturesFetch extends React.Component {
 			this.addToLocalStorage();
 		}
   	}
+	/*Method for populating the app with gods*/
 	populateFromAppCurrent() {
 		var godsifchanged = [];
+		/*Checking localstorage if the gods@app key is set*/
 		var savedgods = JSON.parse(localStorage.getItem('gods@app'));
+		/*Array of objects containing gods' names, src for thumbnail, src for portrait, sound src, pantheon, godclass and wether they are selected or not*/
 		var allgods = [	
 						{id: 1, name: 'Agni', src: './images/god-icons/Agni.png', porsrc: './images/god-portraits/Agni.jpg', selsrc: './sound/select/Agni.ogg', pantheon: 'Hindu', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
 						{id: 2, name: 'Anubis', src: './images/god-icons/Anubis.png', porsrc: './images/god-portraits/Anubis.jpg', selsrc: './sound/select/Anubis.ogg', pantheon: 'Egyptian', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green"},
@@ -137,15 +142,19 @@ class GodPicturesFetch extends React.Component {
 						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},	
    						{id: 88, name: 'Da Ji', src: './images/god-icons/DaJi.png', porsrc: './images/god-portraits/DaJi.jpg', selsrc: './sound/select/DaJi.ogg', pantheon: 'Chinese', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green"},	
 					  ]
+		/*If the gods@app key exists, proceed*/			  
 		if (localStorage.getItem("gods@app") !== null) {
 			var localpantheon = JSON.parse(localStorage.getItem('pantheon@app'));
 			var localgodclass = JSON.parse(localStorage.getItem('godclass@app'));
+			/*If the gods in localstorage are the same as the gods in the allgods array, proceed by changing the state from localstorage*/
 			if (savedgods.length === allgods.length) {
 				this.setState({
 					gods: this.state.gods.concat(savedgods),
 					pantheon: localpantheon,
 					godclass: localgodclass
 				})
+			/*If the gods in localstorage are not the same as the gods in the allgods array (which means that a new god was added)*/
+			/*Create a new array that has the selected states from localstorage and the new god is added as not selected */
 			} else {
 				for (var i = 0; i < allgods.length; i++) {
 					if (savedgods[i] !== undefined) {
@@ -164,6 +173,7 @@ class GodPicturesFetch extends React.Component {
 					godclass: localgodclass
 				}));
 			}
+		/*If the gods@app does not exist, just fetch the gods from the allgods array*/	
 		} else {
 			this.setState((prevState) => ({
 				gods: prevState.gods.concat(allgods),
@@ -172,6 +182,7 @@ class GodPicturesFetch extends React.Component {
 			}));
 		}
 	}
+	/*Mehod to push the currently selected gods to App and it will be subsequently pushed to GodsNamesFetch to be shuffled */
 	runRandomize(push) {
 		var pushSelectedGods = {names: [], porsrc: [], selsrc: []};
 		this.setState({selectedGods : this.state.gods.map((godselect) => {
@@ -184,6 +195,7 @@ class GodPicturesFetch extends React.Component {
 		})})
 		this.props.onClick(pushSelectedGods);
 	}
+	/*Method that handles changes when another pantheon is selected*/
 	changePantheon(newPantheon) {
 		var godclass = this.state.godclass;
 		this.setState({
@@ -221,6 +233,7 @@ class GodPicturesFetch extends React.Component {
 			})
 		});
 	}
+	/*Method that handles changes when another godclass is selected*/
 	changeGodclass(newGodclass) {
 		var pantheon = this.state.pantheon;
 		this.setState({
@@ -259,6 +272,7 @@ class GodPicturesFetch extends React.Component {
 			
 		});
 	}
+	/*Method that handles changes when both another pantheon and godclass are selected*/
 	changeBoth(newPantheon, newGodclass) {
 		resetForm();
 		this.setState({
@@ -271,13 +285,17 @@ class GodPicturesFetch extends React.Component {
 			})
 		});
 	}
+	/*Method that handles profiles' loading and saving*/
 	handleProfileClick(profileName, selection) {
+		/*Saving*/
 		if (selection === 'save') {
 			localStorage.setItem(profileName, JSON.stringify(this.state.gods));
+		/*Loading*/
 		} else if (selection === 'load') {
 			var currentProfilePantheon = JSON.parse(localStorage.getItem(profileName));
 			var currentGods = this.state.gods;
 			var godsProfileChanged = [];
+			/*Check if the gods saved in the profile are the same as the current gods, if they're not, create a new array that has the selected states from localstorage and the new god is added as not selected */
 			if (currentProfilePantheon.length !== currentGods.length) {
 				for (var i = 0; i < currentGods.length; i++) {
 					if (currentProfilePantheon[i] !== undefined) {
@@ -295,6 +313,7 @@ class GodPicturesFetch extends React.Component {
 					pantheon: 'All',
 					godclass: 'All'
 				})
+			/*If they are, load the gods from the profile*/
 			} else {
 				this.setState({
 					gods: currentProfilePantheon,
@@ -304,20 +323,7 @@ class GodPicturesFetch extends React.Component {
 			}
 		}
 	}
-    handleButtonclick() {
-		var isSelected = this.state.isSelected;
-		if (!isSelected) {
-			this.setState({
-				isSelected: true,
-				pictureClassName: "god-picture-div green"
-			})
-		} else {
-			this.setState({
-				isSelected: false,
-				pictureClassName: "god-picture-div none"
-			})
-		}
-    }
+	/*Method for deselecting a chosen god when "Extermination" is enabled*/
 	exterminateGod(godToExterminate) {
 		this.setState({
 			gods : this.state.gods.map((extgod) => {
@@ -331,11 +337,13 @@ class GodPicturesFetch extends React.Component {
 		})})
 		this.addToLocalStorage();
 	}
+	/*Method that adds the current gods to localstorage*/
 	addToLocalStorage() {
 		localStorage.setItem('gods@app', JSON.stringify(this.state.gods));
 		localStorage.setItem('pantheon@app', JSON.stringify(this.state.pantheon));
 		localStorage.setItem('godclass@app', JSON.stringify(this.state.godclass));
 	}
+	/*Method handling gods' picture click*/
 	handlePictureClick(god) {
 		this.setState({
 			gods : this.state.gods.map((godpic) => {

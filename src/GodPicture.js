@@ -1,6 +1,7 @@
 import React from 'react';
 import ProgressiveImage from 'react-progressive-image'
 
+/*Placeholder component for loading the gods' pictures*/
 class GodPicture extends React.Component  {
 	constructor(props) {
 		super(props);

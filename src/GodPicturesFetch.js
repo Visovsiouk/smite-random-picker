@@ -141,6 +141,7 @@ class GodPicturesFetch extends React.Component {
 						{id: 86, name: 'Cernunnos', src: './images/god-icons/Cernunnos.png', porsrc: './images/god-portraits/Cernunnos.jpg', selsrc: './sound/select/Cernunnos.ogg', pantheon: 'Celtic', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green"},				
 						{id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green"},	
    						{id: 88, name: 'Da Ji', src: './images/god-icons/DaJi.png', porsrc: './images/god-portraits/DaJi.jpg', selsrc: './sound/select/DaJi.ogg', pantheon: 'Chinese', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green"},	
+						{id: 89, name: 'Cu Chulainn', src: './images/god-icons/CuChulainn.png', porsrc: './images/god-portraits/CuChulainn.jpg', selsrc: './sound/select/CuChulainn.ogg', pantheon: 'Celtic', godclass: 'Warrior', isSelected: true, pictureClassName: "god-picture-div green"},						  
 					  ]
 		/*If the gods@app key exists, proceed*/			  
 		if (localStorage.getItem("gods@app") !== null) {
@@ -159,12 +160,12 @@ class GodPicturesFetch extends React.Component {
 				for (var i = 0; i < allgods.length; i++) {
 					if (savedgods[i] !== undefined) {
 						if (savedgods[i].isSelected === false){
-							godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+							godsifchanged[i] = {id: allgods[i].id, name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
 						} else {
-							godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
+							godsifchanged[i] = {id: allgods[i].id, name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
 						}
 					} else {
-						godsifchanged[i] = {name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+						godsifchanged[i] = {id: allgods[i].id, name: allgods[i].name, src: allgods[i].src, porsrc: allgods[i].porsrc, selsrc: allgods[i].selsrc, pantheon: allgods[i].pantheon, godclass: allgods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
 					}
 				}
 				this.setState((prevState) => ({
@@ -300,12 +301,12 @@ class GodPicturesFetch extends React.Component {
 				for (var i = 0; i < currentGods.length; i++) {
 					if (currentProfilePantheon[i] !== undefined) {
 						if (currentProfilePantheon[i].isSelected === false){
-							godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+							godsProfileChanged[i] = {id: currentGods[i].id, name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
 						} else {
-							godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
+							godsProfileChanged[i] = {id: currentGods[i].id, name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: true, pictureClassName: "god-picture-div green"}
 						}
 					} else {
-						godsProfileChanged[i] = {name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
+						godsProfileChanged[i] = {id: currentGods[i].id, name: currentGods[i].name, src: currentGods[i].src, porsrc: currentGods[i].porsrc, selsrc: currentGods[i].selsrc, pantheon: currentGods[i].pantheon, godclass: currentGods[i].godclass, isSelected: false, pictureClassName: "god-picture-div none"}
 					}	
 				}
 				this.setState({
@@ -345,6 +346,7 @@ class GodPicturesFetch extends React.Component {
 	}
 	/*Method handling gods' picture click*/
 	handlePictureClick(god) {
+		console.log(this.state.gods)
 		this.setState({
 			gods : this.state.gods.map((godpic) => {
 			if(godpic.id === god.id){

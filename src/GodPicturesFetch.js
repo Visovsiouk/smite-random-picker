@@ -9,8 +9,6 @@ import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
 
-import logo from './images/logo/smite-logo.png';
-
 function resetForm() {
 	document.getElementById("change-pantheon").selectedIndex = 0;
 	document.getElementById("change-godclass").selectedIndex = 0;
@@ -24,7 +22,8 @@ class GodPicturesFetch extends React.Component {
 			pantheon: 'All',
 			godclass: 'All',
 			gods: [],
-			profiles: []
+			profiles: [],
+			nav: ''
 		};
 		this.populateFromAppCurrent = this.populateFromAppCurrent.bind(this);
 		this.runRandomize = this.runRandomize.bind(this);
@@ -34,6 +33,7 @@ class GodPicturesFetch extends React.Component {
 		this.handleProfileClick = this.handleProfileClick.bind(this);
 		this.exterminateGod = this.exterminateGod.bind(this);
 		this.addToLocalStorage = this.addToLocalStorage.bind(this);
+		this.showMenu = this.showMenu.bind(this);
 	}
 	componentDidMount() {
 		/*Run the populateFromAppCurrent method on start*/
@@ -369,6 +369,17 @@ class GodPicturesFetch extends React.Component {
 			})
 		})
 	}
+	showMenu() {
+		if (this.state.nav === 'show-nav') {
+			this.setState({
+				nav: ''
+			})
+		} else {
+			this.setState({
+				nav: 'show-nav'
+			})
+		}
+	}
 	render() {
 		var currentPantheon = this.state.pantheon;
 		var currentGodclass = this.state.godclass;
@@ -421,37 +432,41 @@ class GodPicturesFetch extends React.Component {
 			} return gods
 		})
 		return (
-			<div className="gods-container">
-				<Col className="options-section" xs={12} md={3}>
-					<img src={logo} className="app-logo" alt="logo" />
-					<h2>Welcome to SMITE Randomizer</h2>
-					<Button className="button-randomize" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
-					<Row>
-						<GodButtonExtermination />
-						<GodButtonReset
-							pantheon={this.state.pantheon}
-							godclass={this.state.godclass}
-							onClick={this.changeBoth}
+			<div id="gods-megacontainer" className={this.state.nav}>
+				<div className="gods-container">
+					<Col className="options-section" xs={12} md={3}>
+						<h2>Welcome to SMITE Randomizer</h2>
+						<Button className="button-randomize hidden-xs hidden-sm" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
+						<Row>
+							<GodButtonExtermination />
+							<GodButtonReset
+								pantheon={this.state.pantheon}
+								godclass={this.state.godclass}
+								onClick={this.changeBoth}
+							/>
+						</Row>
+						<Row>
+							<GodPantheon
+								pantheon={this.state.pantheon}
+								onChange={this.changePantheon}
+							/>
+							<GodClass
+								godclass={this.state.godclass}
+								onChange={this.changeGodclass}
+							/>
+						</Row>
+						<GodProfile
+							onClick={this.handleProfileClick}
 						/>
-					</Row>
-					<Row>
-					<GodPantheon
-						pantheon={this.state.pantheon}
-						onChange={this.changePantheon}
-					/>
-					<GodClass
-						godclass={this.state.godclass}
-						onChange={this.changeGodclass}
-					/>
-					</Row>
-					<GodProfile
-						onClick={this.handleProfileClick}
-					/>
-
-				</Col>
-				<Col className="gods-section" xs={12} md={9}>
-					<div className="god-container">{gods}</div>
-				</Col>
+					</Col>
+					<Col className="gods-section" xs={12} md={9}>
+						<Col className="nav-menu-buttons" xs={12} mdHidden lgHidden>
+							<i onClick={this.showMenu} className="material-icons">menu</i>
+							<Button className="button-randomize" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
+						</Col>
+						<div className="god-container">{gods}</div>
+					</Col>
+				</div>
 			</div>
 		);
 	}

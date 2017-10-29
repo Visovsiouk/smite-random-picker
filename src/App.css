@@ -39,6 +39,27 @@ p {
   margin-bottom: 20px;
 }
 
+/* Side menu */
+
+#site-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+}
+
+#site-canvas {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  -webkit-transition: 0.3s ease all;
+  transition: 0.3s ease all;
+}
+
+#site-wrapper.show-nav #site-canvas {
+  -webkit-transform: translateX(75%);
+  transform: translateX(75%);
+}
+
 /*Buttons*/
 .btn-primary, .btn-primary:focus {
   color: var(--blue-font);
@@ -185,7 +206,7 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
 }
 
 .app-logo {
-  height: 80px;
+  max-width: 100%;
 }
 
 .App-intro {
@@ -213,7 +234,7 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
 .mega-container {
   overflow: auto;
   background-color: var(--blue-background);
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .randomizer-container {
@@ -306,7 +327,7 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
 	justify-content: center;
 	width: 100%;
   flex-flow: row wrap;
-  margin-bottom: 40px;
+  margin-bottom: 50px;
 }
 
 .changes {
@@ -353,9 +374,100 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
   justify-content: center;
 }
 
-@media screen and (max-width: 990px) {
+@media screen and (max-width: 1400px) {
+  .btn-primary, .btn-primary:focus {
+    font-size: 1vw;
+  }
+}
+
+@media screen and (max-width: 992px) {
+
+  .btn-primary, .btn-primary:focus {
+    font-size: 18px;
+  }
+
+  #gods-megacontainer {
+    display: flex;
+  }
+
+  #gods-megacontainer.show-nav .gods-container {
+    -webkit-transform: translateX(75%);
+    transform: translateX(75%);
+  }
+
   .gods-section {
     height: initial;
     border-right: none;
+  }
+
+  .gods-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    -webkit-transition: 0.3s ease all;
+    transition: 0.3s ease all;
+  }
+
+  .god-container {
+    margin-top: 80px;    
+  }
+
+  .gods-section {
+    margin-left: 0;
+    padding: 0;
+    height: 100%;
+    position: relative;
+    background-color: var(--blue-background);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    top: 0;
+    bottom: 0;  
+  }
+
+  .options-section {
+    width: 75%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -75%;
+    padding: 15px;
+    z-index: 3000;
+    padding: 15px;
+    background-color: var(--blue);
+    -webkit-transition: -webkit-box-shadow .25s;
+    transition: -webkit-box-shadow .25s;
+    transition: box-shadow .25s;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+  }
+
+  .nav-menu-buttons {
+    background-color: var(--blue);
+    max-height: 80px;
+    position: fixed;
+    top: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .nav-menu-buttons button {
+    margin: 10px;
+  }
+
+  .button-container button {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .god-container {
+    margin-bottom: 74px;
+  }
+}
+
+@media screen and (max-width: 400px) {
+  .god-container {
+    margin-bottom: 92px;
   }
 }

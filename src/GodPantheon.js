@@ -1,12 +1,13 @@
 import React from 'react';
+import { Col } from 'react-bootstrap';
 
 /*"Pantheon" option component*/
 class GodPantheon extends React.Component {
 	constructor(props) {
 		super(props);
-			this.state = { 
-				pantheon: []
-			};
+		this.state = {
+			pantheon: []
+		};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}
 	/*Event that passes the selected pantheon to GodsPicturesFetch*/
@@ -29,25 +30,27 @@ class GodPantheon extends React.Component {
 	}
 	render() {
 		return (
-			<div className="changes">
-				<h3>
-					Pantheon
+			<Col xs={12} md={6}>
+				<div className="changes">
+					<h3>
+						Pantheon
 				</h3>
-				<select 
-					value={this.props.pantheon}
-					id="change-pantheon" 
-					onChange={this.pantheonChange}>
+					<select
+						value={this.props.pantheon}
+						id="change-pantheon"
+						onChange={this.pantheonChange}>
 						<option value="All">All</option>
-						<option value="Chinese">Chinese</option>				  
+						<option value="Chinese">Chinese</option>
 						<option value="Egyptian">Egyptian</option>
 						<option value="Greek">Greek</option>
 						<option value="Hindu">Hindu</option>
 						<option value="Japanese">Japanese</option>
 						<option value="Mayan">Mayan</option>
-						<option value="Norse">Norse</option>				  	
-						<option value="Roman">Roman</option>				  
-				</select>
-			</div>
+						<option value="Norse">Norse</option>
+						<option value="Roman">Roman</option>
+					</select>
+				</div>
+			</Col>
 		);
 	}
 }

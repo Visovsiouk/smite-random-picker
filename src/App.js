@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
-import logo from './images/logo/smite-logo.png';
+import { Col, Modal } from 'react-bootstrap';
 import './App.css';
-import { Col } from 'react-bootstrap';
-import { Modal } from 'react-bootstrap';
 import GodPicturesFetch from './GodPicturesFetch';
 import GodNamesFetch from './GodNamesFetch';
 
@@ -19,44 +17,40 @@ class App extends Component {
     this.closeGodModal = this.closeGodModal.bind(this);
     this.closeNoGodModal = this.closeNoGodModal.bind(this);
   }
-  /*Method for pushing god names to GodsNamesFetch from GodsPicturesFetch*/ 
+  /*Method for pushing god names to GodsNamesFetch from GodsPicturesFetch*/
   passNamesToRan(push) {
-      if (push.names.length > 0) {
-        this.setState({
-          selectedGods: push,
-          showGodModal: true
-        })
-      } else {
-        this.setState({ 
-          showNoGodModal: true 
-        });
-      }
+    if (push.names.length > 0) {
+      this.setState({
+        selectedGods: push,
+        showGodModal: true
+      })
+    } else {
+      this.setState({
+        showNoGodModal: true
+      });
+    }
   }
   /*Method for closing the Modal that shows the randomly selected god*/
   closeGodModal() {
-    this.setState({ 
-      showGodModal: false 
+    this.setState({
+      showGodModal: false
     });
   }
   /*Method for closing the alert Modal for not having any gods selected*/
   closeNoGodModal() {
-    this.setState({ 
-      showNoGodModal: false 
+    this.setState({
+      showNoGodModal: false
     });
   }
   render() {
     return (
       <div className="app">
-        <div className="app-header">
-          <img src={logo} className="app-logo" alt="logo" />
-          <h2>Welcome to SMITE Randomizer</h2>
-        </div>
+        <Col className="no-padding" xs={12} md={12}>
+          <GodPicturesFetch
+            onClick={this.passNamesToRan}
+          />
+        </Col>
         <div className="mega-container">
-          <Col className="gods-section" xs={12} md={12}>
-            <GodPicturesFetch
-              onClick={this.passNamesToRan}
-              />
-          </Col>
           <Modal className="god-modal" show={this.state.showGodModal} onHide={this.closeGodModal}>
             <div className="close-modal">
               <i onClick={this.closeGodModal} className="material-icons">close</i>

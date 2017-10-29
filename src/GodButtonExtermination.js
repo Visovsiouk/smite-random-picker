@@ -1,13 +1,13 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 
 /*"Extermination"" button component*/
-class GodButtonExtermination extends React.Component  {
+class GodButtonExtermination extends React.Component {
 	constructor(props) {
 		super(props);
-			this.state = { 
-				exterminationActive: false
-			};
+		this.state = {
+			exterminationActive: false
+		};
 		this.handleExterminationclick = this.handleExterminationclick.bind(this);
 	}
 	componentDidMount() {
@@ -37,13 +37,15 @@ class GodButtonExtermination extends React.Component  {
 				exterminationActive: false
 			})
 		}
-    }	
+	}
 	render() {
 		return (
-			<div className="control-button">
-				<Button onClick={this.handleExterminationclick} active={this.state.exterminationActive} bsStyle="primary" bsSize="small" block>Extermination</Button>
-			</div>
-		)		
+			<Col xs={12} md={6}>
+				<div className="control-button">
+					<Button onClick={this.handleExterminationclick} active={this.state.exterminationActive} bsStyle="primary" bsSize="large" block>Extermination</Button>
+				</div>
+			</Col>
+		)
 	}
 }
 

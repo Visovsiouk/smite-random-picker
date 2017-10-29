@@ -375,6 +375,7 @@ class GodPicturesFetch extends React.Component {
 				nav: ''
 			})
 		} else {
+			window.scrollTo(0, 0);
 			this.setState({
 				nav: 'show-nav'
 			})

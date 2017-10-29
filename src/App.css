@@ -253,6 +253,10 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
   position: relative;
 }
 
+.randomizer-item img {
+  width: 100%;
+}
+
 .randomizer-item h1 {
   text-align: center;
   margin-top: 10px;
@@ -461,5 +465,9 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
 
   .footer {
     position: static;
+  }
+
+  .randomizer-item h1 {
+    font-size: 18px;
   }
 }

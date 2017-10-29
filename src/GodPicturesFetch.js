@@ -294,15 +294,16 @@ class GodPicturesFetch extends React.Component {
 	}
 	/*Method that handles profiles' loading and saving*/
 	handleProfileClick(profileName, selection) {
-		/*Saving*/
 		if (selection === 'save') {
+			/*Saving*/
 			localStorage.setItem(profileName, JSON.stringify(this.state.gods));
-			/*Loading*/
 		} else if (selection === 'load') {
+			/*Loading*/
 			var currentProfilePantheon = JSON.parse(localStorage.getItem(profileName));
 			var currentGods = this.state.gods;
 			var godsProfileChanged = [];
-			/*Check if the gods saved in the profile are the same as the current gods, if they're not, create a new array that has the selected states from localstorage and the new god is added as not selected */
+			/*Check if the gods saved in the profile are the same as the current gods, if they're not, 
+			create a new array that has the selected states from localstorage and the new god is added as not selected */
 			if (currentProfilePantheon.length !== currentGods.length) {
 				for (var i = 0; i < currentGods.length; i++) {
 					if (currentProfilePantheon[i] !== undefined) {

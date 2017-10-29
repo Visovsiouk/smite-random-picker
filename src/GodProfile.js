@@ -66,14 +66,14 @@ class GodProfile extends React.Component {
 		if (selection === 'save') {
 			var shouldAllowSave = true;
 			var currentProfileName = this.state.profileName;
-			var currentProfileNameLower = currentProfileName.toLowerCase();
+			var currentProfileNameLower = currentProfileName;
 			/*Checking if the profile name already exists in localstorage*/
 			for (var key in localStorage) {
-				if (key.toLowerCase() === currentProfileNameLower) {
+				if (key === currentProfileNameLower) {
 					shouldAllowSave = false;
 				}
 			}
-			/*Checking if the profile name adheres to all rules (Not empty, alphanumeric and "-" characters only and less than 12 characters)*/
+			/*Checking if the profile name adheres to all rules (Not empty, alphanumeric characters only and less than 12 characters)*/
 			if (currentProfileName === '' || /\W/.test(currentProfileName) || currentProfileName.length > 11) {
 				this.setState({
 					wrongNameVisible: true

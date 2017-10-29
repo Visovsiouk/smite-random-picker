@@ -144,6 +144,8 @@ class GodPicturesFetch extends React.Component {
 			{ id: 87, name: 'Ganesha', src: './images/god-icons/Ganesha.png', porsrc: './images/god-portraits/Ganesha.jpg', selsrc: './sound/select/Ganesha.ogg', pantheon: 'Hindu', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 88, name: 'Da Ji', src: './images/god-icons/DaJi.png', porsrc: './images/god-portraits/DaJi.jpg', selsrc: './sound/select/DaJi.ogg', pantheon: 'Chinese', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 89, name: 'Cu Chulainn', src: './images/god-icons/CuChulainn.png', porsrc: './images/god-portraits/CuChulainn.jpg', selsrc: './sound/select/CuChulainn.ogg', pantheon: 'Celtic', godclass: 'Warrior', isSelected: true, pictureClassName: "god-picture-div green" },
+			{ id: 90, name: 'Artio', src: './images/god-icons/Artio.png', porsrc: './images/god-portraits/Artio.jpg', selsrc: './sound/select/Artio.ogg', pantheon: 'Celtic', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green" },
+			{ id: 91, name: 'Hachiman', src: './images/god-icons/Hachiman.png', porsrc: './images/god-portraits/Hachiman.jpg', selsrc: './sound/select/Hachiman.ogg', pantheon: 'Japanese', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green" },
 		]
 		/*If the gods@app key exists, proceed*/
 		if (localStorage.getItem("gods@app") !== null) {

@@ -89,7 +89,7 @@ p {
   display: flex;
   justify-content: flex-end;
   background-color: var(--light-blue);
-  border-radius: 6px;
+  border-radius: 0 0 6px 6px;
 }
 
 .modal-button-container button {
@@ -113,7 +113,7 @@ p {
   align-items: center;
   justify-content: flex-end;
   background-color: var(--light-blue);
-  border-radius: 6px;
+  border-radius: 6px 6px 0 0;
 }
 
 .close-modal i {
@@ -288,13 +288,13 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
   animation: fadein 2s;
   background-color: rgba(255,255,255,0.4);
   min-height: 100px;
-  box-shadow: none;
+  box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
 }
 
 .god-picture-div.green {
 	flex: none;
   animation: fadein 2s;
-  background-color: rgba(0,255,0, 0.4);
+  background-color: #398439;;
   min-height: 100px;
   box-shadow: 0 6px 10px 0 rgba(0,0,0,0.14), 0 1px 18px 0 rgba(0,0,0,0.12), 0 3px 5px -1px rgba(0,0,0,0.3);
 }

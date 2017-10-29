@@ -458,16 +458,8 @@ input:not([type]).validate+label, input[type=text]:not(.browser-default).validat
   .button-container button {
     margin-bottom: 10px;
   }
-}
 
-@media screen and (max-width: 768px) {
-  .god-container {
-    margin-bottom: 74px;
-  }
-}
-
-@media screen and (max-width: 400px) {
-  .god-container {
-    margin-bottom: 92px;
+  .footer {
+    position: static;
   }
 }

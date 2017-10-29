@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
+    "gh-pages": "^0.12.0",
     "lodash": "^4.17.4",
     "react": "^15.4.0",
     "react-audio-player": "^0.3.3",
@@ -20,7 +21,8 @@
     "redux": "^3.6.0"
   },
   "scripts": {
-    "deploy": "npm run build&&gh-pages -d build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",

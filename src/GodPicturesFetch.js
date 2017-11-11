@@ -146,6 +146,7 @@ class GodPicturesFetch extends React.Component {
 			{ id: 89, name: 'Cu Chulainn', src: './images/god-icons/CuChulainn.png', porsrc: './images/god-portraits/CuChulainn.jpg', selsrc: './sound/select/CuChulainn.ogg', pantheon: 'Celtic', godclass: 'Warrior', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 90, name: 'Artio', src: './images/god-icons/Artio.png', porsrc: './images/god-portraits/Artio.jpg', selsrc: './sound/select/Artio.ogg', pantheon: 'Celtic', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 91, name: 'Hachiman', src: './images/god-icons/Hachiman.png', porsrc: './images/god-portraits/Hachiman.jpg', selsrc: './sound/select/Hachiman.ogg', pantheon: 'Japanese', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green" },
+			{ id: 92, name: 'Discordia', src: './images/god-icons/Discordia.png', porsrc: './images/god-portraits/Discordia.jpg', selsrc: './sound/select/Discordia.ogg', pantheon: 'Roman', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green" },			
 		]
 		/*If the gods@app key exists, proceed*/
 		if (localStorage.getItem("gods@app") !== null) {

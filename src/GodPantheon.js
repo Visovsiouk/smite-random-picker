@@ -47,7 +47,10 @@ class GodPantheon extends React.Component {
 						<option value="Japanese">Japanese</option>
 						<option value="Mayan">Mayan</option>
 						<option value="Norse">Norse</option>
+						<option value="Polynesian">Roman</option>
+						<option value="Slavic">Roman</option>
 						<option value="Roman">Roman</option>
+						<option value="Voodoo">Roman</option>
 					</select>
 				</div>
 			</Col>

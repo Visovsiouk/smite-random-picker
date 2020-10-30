@@ -8,6 +8,7 @@ import GodProfile from './GodProfile';
 import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
+import db from "./components/firebase";
 
 function resetForm() {
 	document.getElementById("change-pantheon").selectedIndex = 0;
@@ -23,7 +24,7 @@ class GodPicturesFetch extends React.Component {
 			godclass: 'All',
 			gods: [],
 			profiles: [],
-			nav: ''
+			nav: '',
 		};
 		this.populateFromAppCurrent = this.populateFromAppCurrent.bind(this);
 		this.runRandomize = this.runRandomize.bind(this);
@@ -150,7 +151,7 @@ class GodPicturesFetch extends React.Component {
 			{ id: 93, name: 'Cerberus', src: './images/god-icons/Cerberus.png', porsrc: './images/god-portraits/Cerberus.jpg', selsrc: './sound/select/Cerberus.ogg', pantheon: 'Greek', godclass: 'Guardian', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 94, name: 'Achilles', src: './images/god-icons/Achilles.png', porsrc: './images/god-portraits/Achilles.jpg', selsrc: './sound/select/Achilles.ogg', pantheon: 'Greek', godclass: 'Warrior', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 95, name: 'Chernobog', src: './images/god-icons/Chernobog.png', porsrc: './images/god-portraits/Chernobog.jpg', selsrc: './sound/select/Chernobog.ogg', pantheon: 'Slavic', godclass: 'Hunter', isSelected: true, pictureClassName: "god-picture-div green" },
-			{ id: 96, name: 'Baron Samedi', src: './images/god-icons/BaronSamedi.png', porsrc: './images/god-portraits/BaronSamedi.jpg', selsrc: './sound/select/BaronSamedi.ogg', pantheon: 'Voodoo', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green" },			
+			{ id: 96, name: 'Baron Samedi', src: './images/god-icons/BaronSamedi.png', porsrc: './images/god-portraits/BaronSamedi.jpg', selsrc: './sound/select/BaronSamedi.ogg', pantheon: 'Voodoo', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 97, name: 'Pele', src: './images/god-icons/Pele.png', porsrc: './images/god-portraits/Pele.jpg', selsrc: './sound/select/Pele.ogg', pantheon: 'Polynesian', godclass: 'Assassin', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 98, name: 'Hera', src: './images/god-icons/Hera.png', porsrc: './images/god-portraits/Hera.jpg', selsrc: './sound/select/Hera.ogg', pantheon: 'Greek', godclass: 'Mage', isSelected: true, pictureClassName: "god-picture-div green" },
 			{ id: 99, name: 'King Arthur', src: './images/god-icons/KingArthur.png', porsrc: './images/god-portraits/KingArthur.jpg', selsrc: './sound/select/KingArthur.ogg', pantheon: 'Arthurian', godclass: 'Warrior', isSelected: true, pictureClassName: "god-picture-div green" },

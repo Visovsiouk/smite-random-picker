@@ -1,12 +1,14 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import db from "./components/firebase";
 
 /*"Pantheon" option component*/
 class GodPantheon extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			pantheon: []
+			pantheon: 'All',
+			pantheons: []
 		};
 		this.pantheonChange = this.pantheonChange.bind(this);
 	}
@@ -22,11 +24,13 @@ class GodPantheon extends React.Component {
 			this.setState({
 				pantheon: localpantheon
 			})
-		} else {
-			this.setState({
-				pantheon: 'All'
-			})
 		}
+		
+		db.collection("pantheons").get().then( pantheons => {
+			this.setState({
+				pantheons: pantheons.docs.map(doc => doc.id)
+			}) 
+		});
 	}
 	render() {
 		return (
@@ -34,25 +38,15 @@ class GodPantheon extends React.Component {
 				<div className="changes">
 					<h3>
 						Pantheon
-				</h3>
+					</h3>
 					<select
 						value={this.props.pantheon}
 						id="change-pantheon"
 						onChange={this.pantheonChange}>
 						<option value="All">All</option>
-						<option value="Chinese">Chinese</option>
-						<option value="Egyptian">Egyptian</option>
-						<option value="Greek">Greek</option>
-						<option value="Hindu">Hindu</option>
-						<option value="Japanese">Japanese</option>
-						<option value="Mayan">Mayan</option>
-						<option value="Norse">Norse</option>
-						<option value="Polynesian">Polynesian</option>
-						<option value="Slavic">Slavic</option>
-						<option value="Roman">Roman</option>
-						<option value="Voodoo">Voodoo</option>
-						<option value="Arthurian">Arthurian</option>
-						<option value="Yoruba">Yoruba</option>
+						{this.state.pantheons.map((pantheon) => {
+							return <option key={pantheon} value={pantheon}>{pantheon}</option>;
+						})}
 					</select>
 				</div>
 			</Col>

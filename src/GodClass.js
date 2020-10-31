@@ -1,12 +1,14 @@
 import React from 'react';
 import { Col } from 'react-bootstrap';
+import db from "./components/firebase";
 
 /*"Godclass" option component*/
 class GodClass extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			godclass: []
+			godclass: 'All',
+			classesList: []
 		};
 		this.godclassChange = this.godclassChange.bind(this);
 	}
@@ -22,11 +24,13 @@ class GodClass extends React.Component {
 			this.setState({
 				godclass: localgodclass
 			})
-		} else {
-			this.setState({
-				godclass: 'All'
-			})
 		}
+
+		db.collection("classes").get().then( classesList => {
+			this.setState({
+				classesList: classesList.docs.map(doc => doc.id)
+			}) 
+		});
 	}
 	render() {
 		return (
@@ -40,11 +44,9 @@ class GodClass extends React.Component {
 						id="change-godclass"
 						onChange={this.godclassChange} >
 						<option value="All">All</option>
-						<option value="Assassin">Assassin</option>
-						<option value="Guardian">Guardian</option>
-						<option value="Hunter">Hunter</option>
-						<option value="Mage">Mage</option>
-						<option value="Warrior">Warrior</option>
+						{this.state.classesList.map((singleClass) => {
+							return <option key={singleClass} value={singleClass}>{singleClass}</option>;
+						})}
 					</select>
 				</div>
 			</Col>

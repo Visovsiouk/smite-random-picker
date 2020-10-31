@@ -9,9 +9,11 @@ class GodPicture extends React.Component  {
 			};
 	}
 	render() {
+		var currentClass = 'god-picture-div ' +  (this.props.godSelected === false || this.props.godSelected === undefined ? 'none' : 'green');
+
 		return (
-			<div onClick={this.props.onClick} className={this.props.pictureClassName}>
-				<ProgressiveImage src={this.props.src} placeholder='./images/god-icons/Placeholder.png'>
+			<div onClick={this.props.onClick} className={currentClass}>
+				<ProgressiveImage src={'./images/god-icons/' + this.props.ref_name + '.png'} placeholder='./images/god-icons/Placeholder.png'>
 					{(image) => <img src={image} alt={this.props.pantheon} />}
 				</ProgressiveImage>
 				<h5>{this.props.name}</h5>

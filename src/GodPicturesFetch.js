@@ -8,6 +8,12 @@ import GodPicture from './GodPicture';
 import GodButtonReset from './GodButtonReset';
 import GodButtonExtermination from './GodButtonExtermination';
 import db from "./components/firebase";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from "react-router-dom";
 
 function resetForm() {
 	document.getElementById("change-pantheon").selectedIndex = 0;
@@ -51,12 +57,6 @@ class GodPicturesFetch extends React.Component {
 	/*Method for populating the app with gods*/
 	populateFromAppCurrent() {
 		/*Array of objects containing gods' names, src for thumbnail, src for portrait, sound src, pantheon, godclass and wether they are selected or not*/
-
-		// db.collection("gods").get().then( gods => {
-		// 	this.setState({
-		// 		gods: gods.docs.map(doc => doc.data())
-		// 	})
-		// })
 
 		db.collection("gods").get().then( gods => {
 			this.setState({
@@ -231,38 +231,50 @@ class GodPicturesFetch extends React.Component {
 		return (
 			<div id="gods-megacontainer" className={this.state.nav}>
 				<div className="gods-container">
-					<Col className="options-section" xs={12} md={3}>
-						<h2>Welcome to SMITE Randomizer</h2>
-						<Button className="button-randomize hidden-xs hidden-sm" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
-						<Row>
-							<GodButtonExtermination />
-							<GodButtonReset
-								pantheon={this.state.pantheon}
-								godclass={this.state.godclass}
-								onClick={this.changeBoth}
-							/>
-						</Row>
-						<Row>
-							<GodPantheon
-								pantheon={this.state.pantheon}
-								onChange={this.changePantheon}
-							/>
-							<GodClass
-								godclass={this.state.godclass}
-								onChange={this.changeGodclass}
-							/>
-						</Row>
-						{/* <GodProfile
-							onClick={this.handleProfileClick}
-						/> */}
-					</Col>
-					<Col className="gods-section" xs={12} md={9}>
-						<Col className="nav-menu-buttons" xs={12} mdHidden lgHidden>
-							<i onClick={this.showMenu} className="material-icons">menu</i>
-							<Button className="button-randomize" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
+					<Router>
+						<Col className="options-section" xs={12} md={3}>
+							<h2>Welcome to SMITE Randomizer</h2>
+							<Link to="/admin"><Button className="button-randomize hidden-xs hidden-sm" bsStyle="primary" bsSize="large" block>Home</Button></Link>
+							<Button className="button-randomize hidden-xs hidden-sm" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
+							<Row>
+								<GodButtonExtermination />
+								<GodButtonReset
+									pantheon={this.state.pantheon}
+									godclass={this.state.godclass}
+									onClick={this.changeBoth}
+								/>
+							</Row>
+							<Row>
+								<GodPantheon
+									pantheon={this.state.pantheon}
+									onChange={this.changePantheon}
+								/>
+								<GodClass
+									godclass={this.state.godclass}
+									onChange={this.changeGodclass}
+								/>
+							</Row>
+							{/* <GodProfile
+								onClick={this.handleProfileClick}
+							/> */}
 						</Col>
-						<div className="god-container">{gods}</div>
-					</Col>
+						<Switch>
+							<Route exact path="/">
+								<Col className="gods-section" xs={12} md={9}>
+									<Col className="nav-menu-buttons" xs={12} mdHidden lgHidden>
+										<i onClick={this.showMenu} className="material-icons">menu</i>
+										<Button className="button-randomize" onClick={this.runRandomize} bsStyle="primary" bsSize="large" block>Spin the Wheel of Fortune</Button>
+									</Col>
+									<div className="god-container">{gods}</div>
+								</Col>
+							</Route>
+							<Route exact path="/admin">
+								<Col className="gods-section" xs={12} md={9}>
+									<h3>Admin</h3>
+								</Col>
+							</Route>
+						</Switch>
+					</Router>
 				</div>
 			</div>
 		);

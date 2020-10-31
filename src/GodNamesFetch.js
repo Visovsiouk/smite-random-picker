@@ -18,7 +18,7 @@ function shuffleArray(names, src, selsrc) {
 		selsrc[i] = selsrc[j];
 		selsrc[j] = tempselsrc;
 	}
-	return [names[i], src[i], selsrc[i]];
+	return [names[i]];
 }
 
 /*Component handling the shuffling of gods*/
